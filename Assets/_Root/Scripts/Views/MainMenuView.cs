@@ -7,16 +7,19 @@ namespace NikolayTrofimov_MobileGame
 {
     internal sealed class MainMenuView : MonoBehaviour
     {
-        [SerializeField] private Button _button;
+        [SerializeField] private Button _startButton;
+        [SerializeField] private Button _settingsButton;
         
-        public void Init(UnityAction action)
+        public void Init(UnityAction startAction, UnityAction settingsAction)
         {
-            _button.onClick.AddListener(action);
+            _startButton.onClick.AddListener(startAction);
+            _settingsButton.onClick.AddListener(settingsAction);
         }
 
         private void OnDestroy()
         {
-            _button.onClick.RemoveAllListeners();
+            _startButton.onClick.RemoveAllListeners();
+            _settingsButton.onClick.RemoveAllListeners();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace NikolayTrofimov_MobileGame
         private readonly Transform _placeForUI;
         private MainMenuController _mainMenuController;
         private GameController _gameController;
+        private SettingsController _settingsController;
 
         public MainController(Transform placeForUI, float speed)
         {
@@ -26,11 +27,18 @@ namespace NikolayTrofimov_MobileGame
             {
                 case GameState.Start:
                     _gameController?.Dispose();
+                    _settingsController?.Dispose();
                     _mainMenuController = new MainMenuController(_profilePlayer, _placeForUI);
                     break;
                 case GameState.Game:
                     _mainMenuController?.Dispose();
+                    _settingsController?.Dispose();
                     _gameController = new GameController(_profilePlayer);
+                    break;
+                case GameState.Settings:
+                    _gameController?.Dispose();
+                    _mainMenuController?.Dispose();
+                    _settingsController = new SettingsController(_profilePlayer, _placeForUI);
                     break;
                 default:
                     DisposeAll();
@@ -42,6 +50,7 @@ namespace NikolayTrofimov_MobileGame
         {
             _gameController?.Dispose();
             _mainMenuController?.Dispose();
+            _settingsController?.Dispose();
         }
 
         protected override void OnDispose()
