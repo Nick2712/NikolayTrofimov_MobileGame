@@ -7,12 +7,13 @@ namespace NikolayTrofimov_MobileGame
     {
         [SerializeField] private Transform _placeForUI;
         [SerializeField] private float _speed = 20;
+        [SerializeField] private Transport _transport = Transport.Car;
         private MainController _controller;
 
 
         private void Awake()
         {
-            _controller = new MainController(_placeForUI, _speed);
+            _controller = new MainController(_placeForUI, _speed, _transport);
         }
 
         private void Update()

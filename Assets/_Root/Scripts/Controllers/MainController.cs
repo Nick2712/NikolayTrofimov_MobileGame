@@ -13,9 +13,10 @@ namespace NikolayTrofimov_MobileGame
         private GameController _gameController;
         private SettingsController _settingsController;
 
-        public MainController(Transform placeForUI, float speed)
+
+        public MainController(Transform placeForUI, float speed, Transport transport)
         {
-            _profilePlayer = new ProfilePlayer(speed);
+            _profilePlayer = new ProfilePlayer(speed, transport);
             _profilePlayer.GameState.Subscribe(OnGameStateChange);
             _placeForUI = placeForUI;
             _profilePlayer.GameState.Value = INIT_GAME_STATE;

@@ -1,13 +1,16 @@
 using UnityEngine;
 
+
 namespace NikolayTrofimov_MobileGame
 {
     internal sealed class BackgroundController : BaseController
     {
         private const string PATH = "Background";
+
         private readonly BackgroundView _backgroundView;
-        private ISubscriptionProperty<float> _horizontalMove;
+        private readonly ISubscriptionProperty<float> _horizontalMove;
         private readonly ProfilePlayer _profilePlayer;
+
 
         public BackgroundController(ISubscriptionProperty<float> horizontalMove, ProfilePlayer profilePlayer)
         {

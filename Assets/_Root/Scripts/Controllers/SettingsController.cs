@@ -8,6 +8,7 @@ namespace NikolayTrofimov_MobileGame
         private const string PATH = "Settings";
         private readonly ProfilePlayer _profilePlayer;
 
+
         public SettingsController(ProfilePlayer profilePlayer, Transform placeForUI)
         {
             _profilePlayer = profilePlayer;

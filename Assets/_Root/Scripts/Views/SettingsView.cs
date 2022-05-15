@@ -9,6 +9,7 @@ namespace NikolayTrofimov_MobileGame
     {
         [SerializeField] private Button _backButton;
         
+
         public void Init(UnityAction backAction)
         {
             _backButton.onClick.AddListener(backAction);

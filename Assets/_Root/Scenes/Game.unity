@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _placeForUI: {fileID: 1021772926}
   _speed: 20
+  _transport: 1
 --- !u!4 &483872399
 Transform:
   m_ObjectHideFlags: 0
