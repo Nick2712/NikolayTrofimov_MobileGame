@@ -4,7 +4,7 @@ using UnityEngine.Advertisements;
 
 namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class UnityDisplayAds : IDisplayAds, IUnityAdsInitializationListener
+    internal sealed class UnityDisplayAds : IDisplayAds, IUnityAdsInitializationListener, IUnityAdsListener
     {
         private const string GAME_ID_ANDROID = "4707919";
         private const string REWARDED_ANDROID = "Rewarded_Android";
@@ -26,6 +26,7 @@ namespace NikolayTrofimov_MobileGame
         private UnityDisplayAds()
         {
             Advertisement.Initialize(GAME_ID_ANDROID, true, true, this);
+            Advertisement.AddListener(this);
         }
 
         public void ShowRewarded()
@@ -33,6 +34,7 @@ namespace NikolayTrofimov_MobileGame
             if (Advertisement.IsReady(REWARDED_ANDROID))
             {
                 Advertisement.Show(REWARDED_ANDROID);
+                Advertisement.Load(REWARDED_ANDROID);
             }
             else
             {
@@ -67,6 +69,29 @@ namespace NikolayTrofimov_MobileGame
                     UpdateManager.UpdateAction -= CheckReady;
                     Debug.Log($"реклама не смогла загрузиться за время {MAX_TIME_TO_READY} сек");
                 }
+            }
+        }
+
+        public void OnUnityAdsReady(string placementId)
+        {
+            
+        }
+
+        public void OnUnityAdsDidError(string message)
+        {
+            
+        }
+
+        public void OnUnityAdsDidStart(string placementId)
+        {
+            Debug.Log("реклама запущена");
+        }
+
+        public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
+        {
+            if(showResult == ShowResult.Finished)
+            {
+                Debug.Log("Добавлена награда");
             }
         }
     }
