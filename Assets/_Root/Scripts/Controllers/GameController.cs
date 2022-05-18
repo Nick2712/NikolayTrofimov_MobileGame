@@ -23,6 +23,8 @@ namespace NikolayTrofimov_MobileGame
             AddGameObject(input);
             input.GetComponent<BaseInputView>().Init(horizontalMove, profilePlayer.Car.Speed);
             CreateTransportController(profilePlayer);
+
+            UnityAnalitycTools.Instance.SendMessage("Game Started");
         }
 
         private void CreateTransportController(ProfilePlayer profilePlayer)
