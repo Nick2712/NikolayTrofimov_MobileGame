@@ -14,7 +14,7 @@ namespace NikolayTrofimov_MobileGame
         {
             _profilePlayer = profilePlayer;
             var mainMenu = Object.Instantiate(ResourceLoader.LoadPrefab(PATH), placeForUI);
-            mainMenu.GetComponent<MainMenuView>().Init(StartGame, Settings);
+            mainMenu.GetComponent<MainMenuView>().Init(StartGame, Settings, ShowReward);
             AddGameObject(mainMenu);
         }
 
@@ -26,6 +26,11 @@ namespace NikolayTrofimov_MobileGame
         private void Settings()
         {
             _profilePlayer.GameState.Value = GameState.Settings;
+        }
+
+        private void ShowReward()
+        {
+            UnityDisplayAds.Instance.ShowRewarded();
         }
     }
 }
