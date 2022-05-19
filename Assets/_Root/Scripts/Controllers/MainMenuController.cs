@@ -30,7 +30,7 @@ namespace NikolayTrofimov_MobileGame
 
         private void ShowReward()
         {
-            UnityDisplayAds.Instance.ShowRewarded();
+            UnityAdsService.Instance.RewardedPlayer.Play();
         }
     }
 }

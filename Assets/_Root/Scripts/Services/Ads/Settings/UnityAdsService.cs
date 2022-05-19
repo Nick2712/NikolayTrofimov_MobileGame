@@ -5,13 +5,20 @@ using UnityEngine.Events;
 
 namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class UnityAdsService : MonoBehaviour, IAdsService, IUnityAdsInitializationListener
+    internal sealed class UnityAdsService : IAdsService, IUnityAdsInitializationListener
     {
-        [Header("Components")]
-        [SerializeField] private UnityAdsSettings _settings;
+        private static UnityAdsService _unityAdsService;
+        public static UnityAdsService Instance
+        {
+            get
+            {
+                if (_unityAdsService == null) _unityAdsService = new UnityAdsService();
+                return _unityAdsService;
+            }
+        }
 
-        [field: Header("Events")]
-        [field: SerializeField] public UnityEvent Initialized { get; private set; }
+        private UnityAdsSettings _settings;
+        public UnityEvent Initialized { get; private set; }
 
         public IAdsPlayer InterstitialPlayer { get; private set; }
 
@@ -23,8 +30,14 @@ namespace NikolayTrofimov_MobileGame
 
         public bool IsInitialized => throw new System.NotImplementedException();
 
-        private void Awake()
+        private UnityAdsService()
         {
+
+        }
+
+        public void Init(UnityAdsSettings settings)
+        {
+            _settings = settings;
             InitializeAds();
             InitializePlayers();
         }
@@ -40,7 +53,8 @@ namespace NikolayTrofimov_MobileGame
 
         private IAdsPlayer CreateInterstitial() => new EmptyPlayer("");
 
-        private IAdsPlayer CreateRewarded() => new EmptyPlayer("");
+        private IAdsPlayer CreateRewarded() => 
+            _settings.Rewarded.Enabled ? new RewardedPlayer(_settings.Rewarded.Id) : new EmptyPlayer("");
 
         private IAdsPlayer CreateBanner() => new EmptyPlayer("");
 
@@ -52,7 +66,7 @@ namespace NikolayTrofimov_MobileGame
 
         void IUnityAdsInitializationListener.OnInitializationFailed(UnityAdsInitializationError error, string message)
         {
-            Debug.Log($"Initialization failed {error.ToString()} - {message}");
+            Debug.Log($"Initialization failed {error} - {message}");
         }
     }
 }

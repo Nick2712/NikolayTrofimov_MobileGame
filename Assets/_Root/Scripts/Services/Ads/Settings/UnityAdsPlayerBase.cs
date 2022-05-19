@@ -19,11 +19,11 @@ namespace NikolayTrofimov_MobileGame
         {
             _id = id;
             Advertisement.AddListener(this);
+            Load();
         }
 
         public void Play()
         {
-            Load();
             OnPlaying();
             Load();
         }
