@@ -155,6 +155,8 @@ MonoBehaviour:
   _placeForUI: {fileID: 1021772926}
   _speed: 20
   _transport: 1
+  _settings: {fileID: 11400000, guid: 03a4b0a40104cc742a2a435350eeb376, type: 2}
+  _library: {fileID: 11400000, guid: 926a6b2788dab8d4fa1c4eb8d6ff355f, type: 2}
 --- !u!4 &483872399
 Transform:
   m_ObjectHideFlags: 0
@@ -305,7 +307,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3

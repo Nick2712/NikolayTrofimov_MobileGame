@@ -8,12 +8,16 @@ namespace NikolayTrofimov_MobileGame
         [SerializeField] private Transform _placeForUI;
         [SerializeField] private float _speed = 20;
         [SerializeField] private Transport _transport = Transport.Car;
+        [SerializeField] private UnityAdsSettings _settings;
+        [SerializeField] private ProductLibrary _library;
         private MainController _controller;
 
 
         private void Awake()
         {
             _controller = new MainController(_placeForUI, _speed, _transport);
+            UnityAdsService.Instance.Init(_settings);
+            IAPService.Instance.Init(_library);
         }
 
         private void Update()
