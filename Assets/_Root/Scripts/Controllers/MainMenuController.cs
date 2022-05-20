@@ -14,7 +14,7 @@ namespace NikolayTrofimov_MobileGame
         {
             _profilePlayer = profilePlayer;
             var mainMenu = Object.Instantiate(ResourceLoader.LoadPrefab(PATH), placeForUI);
-            mainMenu.GetComponent<MainMenuView>().Init(StartGame, Settings, ShowReward);
+            mainMenu.GetComponent<MainMenuView>().Init(StartGame, Settings, ShowReward, PurchaseSomething);
             AddGameObject(mainMenu);
         }
 
@@ -31,6 +31,11 @@ namespace NikolayTrofimov_MobileGame
         private void ShowReward()
         {
             UnityAdsService.Instance.RewardedPlayer.Play();
+        }
+
+        private void PurchaseSomething()
+        {
+
         }
     }
 }
