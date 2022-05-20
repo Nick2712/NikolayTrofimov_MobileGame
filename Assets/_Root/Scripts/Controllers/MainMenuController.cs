@@ -35,7 +35,7 @@ namespace NikolayTrofimov_MobileGame
 
         private void PurchaseSomething()
         {
-
+            IAPService.Instance.Buy(IAPService.Instance.ProductLibrary.Products[0].Id);
         }
     }
 }

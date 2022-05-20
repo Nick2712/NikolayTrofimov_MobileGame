@@ -5,17 +5,24 @@ using UnityEngine.Purchasing;
 
 namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class IAPService : MonoBehaviour, IStoreListener, IIAPService
+    internal sealed class IAPService : IStoreListener, IIAPService
     {
-        [Header("Components")]
-        [SerializeField] private ProductLibrary _productLibrary;
+        private static IAPService _iapService;
 
-        [field: Header("Events")]
-        [field: SerializeField] public UnityEvent Initialized { get; private set; }
+        public static IAPService Instance
+        {
+            get
+            {
+                if (_iapService == null) _iapService = new IAPService();
+                return _iapService;
+            }
+        }
 
-        [field: SerializeField] public UnityEvent PurchaseSucceed { get; private set; }
+        public ProductLibrary ProductLibrary { get; private set; }
 
-        [field: SerializeField] public UnityEvent PurchaseFailed { get; private set; }
+        public UnityEvent Initialized { get; private set; }
+        public UnityEvent PurchaseSucceed { get; private set; }
+        public UnityEvent PurchaseFailed { get; private set; }
 
         public bool IsInitialized { get; private set; }
 
@@ -24,8 +31,15 @@ namespace NikolayTrofimov_MobileGame
         private PurchaseValidator _purchaseValidator;
         private PurchaseRestorer _purchaseRestorer;
 
-        private void Awake()
+
+        private IAPService()
         {
+            
+        }
+        
+        public void Init(ProductLibrary productLibrary)
+        {
+            ProductLibrary = productLibrary;
             InitializeProducts();
         }
 
@@ -34,7 +48,7 @@ namespace NikolayTrofimov_MobileGame
             StandardPurchasingModule purchasingModule = StandardPurchasingModule.Instance();
             ConfigurationBuilder builder = ConfigurationBuilder.Instance(purchasingModule);
 
-            foreach (Product product in _productLibrary.Products)
+            foreach (Product product in ProductLibrary.Products)
             {
                 builder.AddProduct(product.Id, product.ProductType);
             }
