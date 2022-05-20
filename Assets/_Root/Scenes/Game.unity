@@ -160,6 +160,7 @@ MonoBehaviour:
   _placeForUI: {fileID: 1021772926}
   _speed: 20
   _transport: 1
+  _settings: {fileID: 11400000, guid: 03a4b0a40104cc742a2a435350eeb376, type: 2}
 --- !u!4 &483872399
 Transform:
   m_ObjectHideFlags: 0

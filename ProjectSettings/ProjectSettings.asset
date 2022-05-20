@@ -836,6 +836,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Legacy Analytics: 1
+    Purchasing: 1
     Unity Ads: 1
   luminIcon:
     m_Name: 
