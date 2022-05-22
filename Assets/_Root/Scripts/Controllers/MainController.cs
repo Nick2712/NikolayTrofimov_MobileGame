@@ -12,6 +12,7 @@ namespace NikolayTrofimov_MobileGame
         private MainMenuController _mainMenuController;
         private GameController _gameController;
         private SettingsController _settingsController;
+        private InventoryController _inventoryController;
 
 
         public MainController(Transform placeForUI, float speed, Transport transport)
@@ -29,17 +30,26 @@ namespace NikolayTrofimov_MobileGame
                 case GameState.Start:
                     _gameController?.Dispose();
                     _settingsController?.Dispose();
+                    _inventoryController?.Dispose();
                     _mainMenuController = new MainMenuController(_profilePlayer, _placeForUI);
                     break;
                 case GameState.Game:
                     _mainMenuController?.Dispose();
                     _settingsController?.Dispose();
+                    _inventoryController?.Dispose();
                     _gameController = new GameController(_profilePlayer);
                     break;
                 case GameState.Settings:
                     _gameController?.Dispose();
                     _mainMenuController?.Dispose();
+                    _inventoryController?.Dispose();
                     _settingsController = new SettingsController(_profilePlayer, _placeForUI);
+                    break;
+                case GameState.Inventory:
+                    _gameController?.Dispose();
+                    _mainMenuController?.Dispose();
+                    _settingsController?.Dispose();
+                    _inventoryController = new InventoryController(_placeForUI, _profilePlayer.InventoryModel);
                     break;
                 default:
                     DisposeAll();
@@ -52,6 +62,7 @@ namespace NikolayTrofimov_MobileGame
             _gameController?.Dispose();
             _mainMenuController?.Dispose();
             _settingsController?.Dispose();
+            _inventoryController?.Dispose();
         }
 
         protected override void OnDispose()

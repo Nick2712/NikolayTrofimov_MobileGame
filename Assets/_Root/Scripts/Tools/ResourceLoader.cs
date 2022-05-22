@@ -14,5 +14,10 @@ namespace NikolayTrofimov_MobileGame
         {
             return Resources.Load<Sprite>(path);
         }
+
+        public static TResource LoadResource<TResource>(string path) where TResource : Object
+        {
+            return Resources.Load<TResource>(path);
+        }
     }
 }

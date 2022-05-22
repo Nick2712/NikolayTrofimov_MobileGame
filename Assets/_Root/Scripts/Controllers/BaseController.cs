@@ -9,6 +9,7 @@ namespace NikolayTrofimov_MobileGame
     {
         private List<BaseController> _controllers;
         private List<GameObject> _gameObjects;
+        private List<IRepository> _repositorys;
         private bool _disposed;
 
         protected void AddController(BaseController controller)
@@ -21,6 +22,12 @@ namespace NikolayTrofimov_MobileGame
         {
             if (_gameObjects == null) _gameObjects = new List<GameObject>();
             _gameObjects.Add(gameObject);
+        }
+
+        protected void AddRepositories(IRepository repository)
+        {
+            _repositorys ??= new List<IRepository>();
+            _repositorys.Add(repository);
         }
 
         public void Dispose()
@@ -42,6 +49,13 @@ namespace NikolayTrofimov_MobileGame
                         UnityEngine.Object.Destroy(gameObject);
                     }
                     _gameObjects.Clear();
+                }
+                if( _repositorys != null )
+                {
+                    foreach(IRepository repository in _repositorys)
+                    {
+                        repository.Dispose();
+                    }
                 }
                 _disposed = true;
                 OnDispose();
