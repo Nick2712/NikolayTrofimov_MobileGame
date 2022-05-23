@@ -11,5 +11,11 @@ namespace NikolayTrofimov_MobileGame
             var dataSource = ResourceLoader.LoadResource<ItemConfigDataSource>(path);
             return dataSource == null ? Array.Empty<ItemConfig>() : dataSource.ItemConfigs.ToArray();
         }
+
+        public static UpgradeItemConfig[] LoadUpgradeItemConfigs(string path)
+        {
+            var dataSource = ResourceLoader.LoadResource<UpgradeItemConfigDataSource>(path);
+            return dataSource == null ? Array.Empty<UpgradeItemConfig>() : dataSource.ItemConfigs.ToArray();
+        }
     }
 }

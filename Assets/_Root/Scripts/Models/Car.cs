@@ -1,12 +1,21 @@
 namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class Car
+    internal sealed class TransportModel : IUpgradable
     {
-        public readonly float Speed;
+        public float Speed { get; set; }
+        private readonly float _defaultSpeed;
+        public readonly Transport Type;
 
-        public Car(float speed)
+        public TransportModel(float speed, Transport type)
         {
             Speed = speed;
+            _defaultSpeed = speed;
+            Type = type;
+        }
+
+        public void Restore()
+        {
+            Speed = _defaultSpeed;
         }
     }
 }

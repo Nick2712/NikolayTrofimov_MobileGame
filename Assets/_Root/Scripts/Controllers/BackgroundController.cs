@@ -24,7 +24,7 @@ namespace NikolayTrofimov_MobileGame
 
         private void Move(float fixedDeltaTime)
         {
-            _backgroundView.Move(_horizontalMove.Value * _profilePlayer.Car.Speed * fixedDeltaTime);
+            _backgroundView.Move(_horizontalMove.Value * _profilePlayer.Transport.Speed * fixedDeltaTime);
         }
 
         protected override void OnDispose()

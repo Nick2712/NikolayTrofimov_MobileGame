@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 864366e9320f9804a92908ce861a8801, type: 3}
-  m_Name: Item_2
+  m_Script: {fileID: 11500000, guid: f64da640067ec0746b90fad8857ea33f, type: 3}
+  m_Name: UpgradeItemConfigDataSource
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Item_2
-  <Title>k__BackingField: Item 2
-  <Icon>k__BackingField: {fileID: 21300000, guid: 7931262bee02b4179ab843cecd12cb07, type: 3}
+  _upgradeItemConfigs: []

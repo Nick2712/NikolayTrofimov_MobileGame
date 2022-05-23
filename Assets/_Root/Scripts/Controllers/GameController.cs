@@ -21,7 +21,7 @@ namespace NikolayTrofimov_MobileGame
             var input = Object.Instantiate(ResourceLoader.LoadPrefab(INPUT_KEYBOARD_PATH));
 #endif
             AddGameObject(input);
-            input.GetComponent<BaseInputView>().Init(horizontalMove, profilePlayer.Car.Speed);
+            input.GetComponent<BaseInputView>().Init(horizontalMove, profilePlayer.Transport.Speed);
             CreateTransportController(profilePlayer);
 
             UnityAnalitycTools.Instance.SendMessage("Game Started");
@@ -29,7 +29,7 @@ namespace NikolayTrofimov_MobileGame
 
         private void CreateTransportController(ProfilePlayer profilePlayer)
         {
-            switch (profilePlayer.Transport)
+            switch (profilePlayer.Transport.Type)
             {
                 case Transport.Car:
                     AddGameObject(Object.Instantiate(ResourceLoader.LoadPrefab(CAR_PATH)));
@@ -38,7 +38,7 @@ namespace NikolayTrofimov_MobileGame
                     AddGameObject(Object.Instantiate(ResourceLoader.LoadPrefab(BOAT_PATH)));
                     break;
                 default:
-                    Debug.LogError($"wrong transport: {profilePlayer.Transport}");
+                    Debug.LogError($"wrong transport: {profilePlayer.Transport.Type}");
                     break;
             }
         }
