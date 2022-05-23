@@ -37,7 +37,7 @@ namespace NikolayTrofimov_MobileGame
                     _mainMenuController?.Dispose();
                     _settingsController?.Dispose();
                     _shedController?.Dispose();
-                    _gameController = new GameController(_profilePlayer);
+                    _gameController = new GameController(_profilePlayer, _placeForUI);
                     break;
                 case GameState.Settings:
                     _gameController?.Dispose();

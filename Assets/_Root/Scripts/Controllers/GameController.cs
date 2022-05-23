@@ -11,7 +11,7 @@ namespace NikolayTrofimov_MobileGame
         private const string BOAT_PATH = "Boat";
 
 
-        public GameController(ProfilePlayer profilePlayer)
+        public GameController(ProfilePlayer profilePlayer, Transform placeForUI)
         {
             var horizontalMove = new SubscriptionProperty<float>();
             AddController(new BackgroundController(horizontalMove, profilePlayer));
@@ -22,24 +22,28 @@ namespace NikolayTrofimov_MobileGame
 #endif
             AddGameObject(input);
             input.GetComponent<BaseInputView>().Init(horizontalMove, profilePlayer.Transport.Speed);
-            CreateTransportController(profilePlayer);
+            IAbilityActivator transportController = CreateTransportController(profilePlayer);
 
             UnityAnalitycTools.Instance.SendMessage("Game Started");
+
+            var abilitiesController = new AbilitiesController(placeForUI, transportController);
         }
 
-        private void CreateTransportController(ProfilePlayer profilePlayer)
+        private IAbilityActivator CreateTransportController(ProfilePlayer profilePlayer)
         {
             switch (profilePlayer.Transport.Type)
             {
                 case Transport.Car:
-                    AddGameObject(Object.Instantiate(ResourceLoader.LoadPrefab(CAR_PATH)));
-                    break;
+                    var carController = new CarController();
+                    AddController(carController);
+                    return carController;
                 case Transport.Boat:
-                    AddGameObject(Object.Instantiate(ResourceLoader.LoadPrefab(BOAT_PATH)));
-                    break;
+                    var boatController = new BoatController();
+                    AddController(boatController);
+                    return boatController;
                 default:
                     Debug.LogError($"wrong transport: {profilePlayer.Transport.Type}");
-                    break;
+                    return null;
             }
         }
     }

@@ -7,7 +7,7 @@ namespace NikolayTrofimov_MobileGame
     internal sealed class InputJoystickView : BaseInputView
     {
         [SerializeField] private float _notMoveJoystickPosition = 0.02f;
-
+        
         public override void Init(SubscriptionProperty<float> horizontalMove, float speed)
         {
             base.Init(horizontalMove, speed);
