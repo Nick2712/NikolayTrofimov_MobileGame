@@ -15,9 +15,9 @@ namespace NikolayTrofimov_MobileGame
         private ShedController _shedController;
 
 
-        public MainController(Transform placeForUI, float speed, Transport transport)
+        public MainController(Transform placeForUI, float speed, float jumpHeight, Transport transport)
         {
-            _profilePlayer = new ProfilePlayer(speed, transport);
+            _profilePlayer = new ProfilePlayer(speed, jumpHeight, transport);
             _profilePlayer.GameState.Subscribe(OnGameStateChange);
             _placeForUI = placeForUI;
             _profilePlayer.GameState.Value = INIT_GAME_STATE;

@@ -19,6 +19,7 @@ namespace NikolayTrofimov_MobileGame
             return config.Type switch
             {
                 UpgradeType.Speed => new SpeedUpgradeHandler(config.Value),
+                UpgradeType.JumpHeight => new JumpHeightUpgradeHandler(config.Value),
                 _ => StubUpgradeHandler.Default
             };
         }

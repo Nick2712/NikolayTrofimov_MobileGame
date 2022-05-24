@@ -58,6 +58,7 @@ namespace NikolayTrofimov_MobileGame
                 _profilePlayer.InventoryModel.EquipedItems, _upgradeHandlersRepository.Items);
 
             Debug.Log($"Aply. Current speed {_profilePlayer.Transport.Speed}");
+            Debug.Log($"Aply. Current jump height {_profilePlayer.Transport.JumpHeight}");
             _profilePlayer.GameState.Value = GameState.Start;
         }
 
@@ -65,6 +66,7 @@ namespace NikolayTrofimov_MobileGame
         {
             _profilePlayer.GameState.Value = GameState.Start;
             Debug.Log($"Back. Current speed: {_profilePlayer.Transport.Speed}");
+            Debug.Log($"Back. Current jump height: {_profilePlayer.Transport.JumpHeight}");
         }
 
         private void UpgradeWithEquippedItems(TransportModel transport, IReadOnlyList<string> equipedItems,

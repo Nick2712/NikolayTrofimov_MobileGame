@@ -6,9 +6,9 @@ namespace NikolayTrofimov_MobileGame
         public readonly TransportModel Transport;
         public readonly InventoryModel InventoryModel;
 
-        public ProfilePlayer(float speed, Transport transport)
+        public ProfilePlayer(float speed, float jumpHeight, Transport transport)
         {
-            Transport = new TransportModel(speed, transport);
+            Transport = new TransportModel(speed, jumpHeight, transport);
             GameState = new SubscriptionProperty<GameState>();
             InventoryModel = new InventoryModel();
         }
