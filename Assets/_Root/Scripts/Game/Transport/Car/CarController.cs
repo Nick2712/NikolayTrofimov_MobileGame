@@ -1,6 +1,6 @@
 namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class CarController : TransportController<CarView>
+    internal sealed class CarController : TransportController
     {
         private const string VIEW_PATH = "Car";
         

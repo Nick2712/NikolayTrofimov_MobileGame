@@ -7,8 +7,6 @@ namespace NikolayTrofimov_MobileGame
     {
         private const string INPUT_KEYBOARD_PATH = "InputKeyboard";
         private const string INPUT_JOYSTICK_PATH = "InputJoystick";
-        private const string CAR_PATH = "Car";
-        private const string BOAT_PATH = "Boat";
 
 
         public GameController(ProfilePlayer profilePlayer, Transform placeForUI)
@@ -27,6 +25,7 @@ namespace NikolayTrofimov_MobileGame
             UnityAnalitycTools.Instance.SendMessage("Game Started");
 
             var abilitiesController = new AbilitiesController(placeForUI, transportController);
+            AddController(abilitiesController);
         }
 
         private IAbilityActivator CreateTransportController(ProfilePlayer profilePlayer)

@@ -3,24 +3,24 @@ using UnityEngine;
 
 namespace NikolayTrofimov_MobileGame
 {
-    internal abstract class TransportController<TView> : BaseController, IAbilityActivator where TView : Component
+    internal abstract class TransportController : BaseController, IAbilityActivator
     {
-        private readonly TView _view;
+        private readonly IAbilityActivator _view;
 
-        public GameObject ViewGameObject => _view.gameObject;
+        public GameObject ViewGameObject => _view.ViewGameObject;
 
         public TransportController()
         {
             _view = LoadView();
         }
 
-        private TView LoadView()
+        private IAbilityActivator LoadView()
         {
             GameObject prefab = ResourceLoader.LoadPrefab(ViewPath());
             GameObject objectView = Object.Instantiate(prefab);
             AddGameObject(objectView);
 
-            return objectView.GetComponent<TView>();
+            return objectView.GetComponent<IAbilityActivator>();
         }
 
         protected abstract string ViewPath();

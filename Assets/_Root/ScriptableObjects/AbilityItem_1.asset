@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8a756b643f1de4fb8a974fbad8f70c, type: 3}
+  m_Name: AbilityItem_1
+  m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: 20ca6d71e54fab74295a3b619b65d9a3, type: 2}
+  <Type>k__BackingField: 1
+  <Projectile>k__BackingField: {fileID: 3747600479551462951, guid: 6a77765ec37bb2846a45b24eab5c0beb, type: 3}
+  <Value>k__BackingField: 30

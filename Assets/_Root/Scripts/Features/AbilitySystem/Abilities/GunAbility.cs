@@ -17,9 +17,10 @@ namespace NikolayTrofimov_MobileGame
         public void Apply(IAbilityActivator activator)
         {
             var projectile = Object.Instantiate(_config.Projectile).GetComponent<Rigidbody2D>();
+            projectile.transform.position = activator.ViewGameObject.transform.position;
             Vector3 force = activator.ViewGameObject.transform.right * _config.Value;
             projectile.AddForce(force, ForceMode2D.Impulse);
-            Object.Destroy(projectile, LIFE_TIME_PROJECTILE);
+            Object.Destroy(projectile.gameObject, LIFE_TIME_PROJECTILE);
         }
     }
 }
