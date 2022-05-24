@@ -7,11 +7,9 @@ namespace NikolayTrofimov_MobileGame
     {
         private const string INPUT_KEYBOARD_PATH = "InputKeyboard";
         private const string INPUT_JOYSTICK_PATH = "InputJoystick";
-        private const string CAR_PATH = "Car";
-        private const string BOAT_PATH = "Boat";
 
 
-        public GameController(ProfilePlayer profilePlayer)
+        public GameController(ProfilePlayer profilePlayer, Transform placeForUI)
         {
             var horizontalMove = new SubscriptionProperty<float>();
             AddController(new BackgroundController(horizontalMove, profilePlayer));
@@ -21,25 +19,30 @@ namespace NikolayTrofimov_MobileGame
             var input = Object.Instantiate(ResourceLoader.LoadPrefab(INPUT_KEYBOARD_PATH));
 #endif
             AddGameObject(input);
-            input.GetComponent<BaseInputView>().Init(horizontalMove, profilePlayer.Car.Speed);
-            CreateTransportController(profilePlayer);
+            input.GetComponent<BaseInputView>().Init(horizontalMove, profilePlayer.Transport.Speed);
+            IAbilityActivator transportController = CreateTransportController(profilePlayer);
 
             UnityAnalitycTools.Instance.SendMessage("Game Started");
+
+            var abilitiesController = new AbilitiesController(placeForUI, transportController);
+            AddController(abilitiesController);
         }
 
-        private void CreateTransportController(ProfilePlayer profilePlayer)
+        private IAbilityActivator CreateTransportController(ProfilePlayer profilePlayer)
         {
-            switch (profilePlayer.Transport)
+            switch (profilePlayer.Transport.Type)
             {
                 case Transport.Car:
-                    AddGameObject(Object.Instantiate(ResourceLoader.LoadPrefab(CAR_PATH)));
-                    break;
+                    var carController = new CarController();
+                    AddController(carController);
+                    return carController;
                 case Transport.Boat:
-                    AddGameObject(Object.Instantiate(ResourceLoader.LoadPrefab(BOAT_PATH)));
-                    break;
+                    var boatController = new BoatController();
+                    AddController(boatController);
+                    return boatController;
                 default:
-                    Debug.LogError($"wrong transport: {profilePlayer.Transport}");
-                    break;
+                    Debug.LogError($"wrong transport: {profilePlayer.Transport.Type}");
+                    return null;
             }
         }
     }

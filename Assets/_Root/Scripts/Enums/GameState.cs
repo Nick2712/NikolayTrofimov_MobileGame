@@ -5,6 +5,7 @@ namespace NikolayTrofimov_MobileGame
         None,
         Start,
         Game,
-        Settings
+        Settings,
+        Inventory
     }
 }

@@ -11,13 +11,16 @@ namespace NikolayTrofimov_MobileGame
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _showRewarded;
         [SerializeField] private Button _purchaseSomething;
+        [SerializeField] private Button _shedButton;
         
-        public void Init(UnityAction startAction, UnityAction settingsAction, UnityAction showRewarded, UnityAction purchaseSomething)
+        public void Init(UnityAction startAction, UnityAction settingsAction, 
+            UnityAction showRewarded, UnityAction purchaseSomething, UnityAction shed)
         {
             _startButton.onClick.AddListener(startAction);
             _settingsButton.onClick.AddListener(settingsAction);
             _showRewarded.onClick.AddListener(showRewarded);
             _purchaseSomething.onClick.AddListener(purchaseSomething);
+            _shedButton.onClick.AddListener(shed);
         }
 
         private void OnDestroy()
@@ -26,6 +29,7 @@ namespace NikolayTrofimov_MobileGame
             _settingsButton.onClick.RemoveAllListeners();
             _showRewarded.onClick.RemoveAllListeners();
             _purchaseSomething.onClick.RemoveAllListeners();
+            _shedButton.onClick.RemoveAllListeners();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace NikolayTrofimov_MobileGame
         {
             _profilePlayer = profilePlayer;
             var mainMenu = Object.Instantiate(ResourceLoader.LoadPrefab(PATH), placeForUI);
-            mainMenu.GetComponent<MainMenuView>().Init(StartGame, Settings, ShowReward, PurchaseSomething);
+            mainMenu.GetComponent<MainMenuView>().Init(StartGame, Settings, ShowReward, PurchaseSomething, Shed);
             AddGameObject(mainMenu);
         }
 
@@ -36,6 +36,11 @@ namespace NikolayTrofimov_MobileGame
         private void PurchaseSomething()
         {
             IAPService.Instance.Buy(IAPService.Instance.ProductLibrary.Products[0].Id);
+        }
+
+        private void Shed()
+        {
+            _profilePlayer.GameState.Value = GameState.Inventory;
         }
     }
 }
