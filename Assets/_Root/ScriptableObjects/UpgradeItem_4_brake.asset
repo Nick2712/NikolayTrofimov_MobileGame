@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dcb46762cd54434394ba555d52588d3, type: 3}
   m_Name: UpgradeItem_4_brake
   m_EditorClassIdentifier: 
-  _itemConfig: {fileID: 0}
-  <Type>k__BackingField: 0
-  <Value>k__BackingField: 0
+  _itemConfig: {fileID: 11400000, guid: 067f6ea99face884c8eb449e58b4771c, type: 2}
+  <Type>k__BackingField: 1
+  <Value>k__BackingField: 10

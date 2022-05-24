@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864366e9320f9804a92908ce861a8801, type: 3}
   m_Name: Item_5_transmission
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 
-  <Title>k__BackingField: 
-  <Icon>k__BackingField: {fileID: 0}
+  <Id>k__BackingField: Item_5_transmission
+  <Title>k__BackingField: Transmission
+  <Icon>k__BackingField: {fileID: 21300000, guid: 90f91bf07d6aec14bb60e830bf64792c, type: 3}
