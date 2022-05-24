@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b8a756b643f1de4fb8a974fbad8f70c, type: 3}
-  m_Name: AbilityItem_1
+  m_Name: AbilityItem_2_bomb
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 20ca6d71e54fab74295a3b619b65d9a3, type: 2}
   <Type>k__BackingField: 1
