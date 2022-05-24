@@ -835,9 +835,13 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Legacy Analytics: 1
-    Purchasing: 1
-    Unity Ads: 1
+    Build: 0
+    Collab: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -851,10 +855,10 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 15af8320-fcbf-403c-ac34-a5afd283a686
+  cloudProjectId: 0cf42c2e-9768-42ab-85dc-da043aff3a40
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: racingGame
+  projectName: CarGameLessons
   organizationId: nikolay271
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
