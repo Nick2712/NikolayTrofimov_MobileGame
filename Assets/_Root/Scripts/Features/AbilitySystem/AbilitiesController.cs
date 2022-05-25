@@ -1,6 +1,5 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
-using UnityEngine;
 
 
 namespace NikolayTrofimov_MobileGame
@@ -29,11 +28,6 @@ namespace NikolayTrofimov_MobileGame
         {
             if (_repository.Items.TryGetValue(abilityID, out IAbility ability))
                 ability.Apply(_activator);
-        }
-
-        protected override void OnDispose()
-        {
-            _view.Clear();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace NikolayTrofimov_MobileGame
 
         private readonly Dictionary<string, ItemView> _itemsViews = new ();
 
-        public void Display(IEnumerable<ItemConfig> itemsCollection, Action<string> itemClicked)
+        public void Display(IEnumerable<IItem> itemsCollection, Action<string> itemClicked)
         {
             Clear();
 
