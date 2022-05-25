@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68251feb57f306147b59c172b0fe4952, type: 3}
   m_Name: UnityAdsSettings
   m_EditorClassIdentifier: 
-  <GameId>k__BackingField: 4707919
+  <GameId>k__BackingField: 4770107
   <Interstitial>k__BackingField:
     <Enabled>k__BackingField: 0
     <Id>k__BackingField: 
