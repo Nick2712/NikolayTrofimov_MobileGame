@@ -12,11 +12,19 @@ namespace NikolayTrofimov_MobileGame
         {
             _horizontalMove = horizontalMove;
             _speed = speed;
+            UpdateManager.UpdateAction += Move;
         }
+
+        protected abstract void Move(float fixedDeltaTime);
 
         protected virtual void OnHorizontalMove(float value)
         {
             _horizontalMove.Value = value;
+        }
+
+        private void OnDestroy()
+        {
+            UpdateManager.UpdateAction -= Move;
         }
     }
 }

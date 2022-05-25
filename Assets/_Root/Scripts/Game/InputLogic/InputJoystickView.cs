@@ -6,18 +6,13 @@ namespace NikolayTrofimov_MobileGame
 {
     internal sealed class InputJoystickView : BaseInputView
     {
-        [SerializeField] private float _notMoveJoystickPosition = 0.02f;
+        [SerializeField] private float _moveStepThreshold = 0.02f;
         
-        public override void Init(SubscriptionProperty<float> horizontalMove, float speed)
-        {
-            base.Init(horizontalMove, speed);
-            UpdateManager.UpdateAction += Move;
-        }
-
-        private void Move(float deltatime)
+        
+        protected override void Move(float deltatime)
         {
             var moveStep = CrossPlatformInputManager.GetAxis("Horizontal");
-            if(moveStep > _notMoveJoystickPosition || moveStep < -_notMoveJoystickPosition)
+            if(moveStep > _moveStepThreshold || moveStep < -_moveStepThreshold)
             {
                 _horizontalMove.Value = moveStep;
             }
@@ -25,11 +20,6 @@ namespace NikolayTrofimov_MobileGame
             {
                 _horizontalMove.Value = 0;
             }
-        }
-
-        private void OnDestroy()
-        {
-            UpdateManager.UpdateAction -= Move;
         }
     }
 }
