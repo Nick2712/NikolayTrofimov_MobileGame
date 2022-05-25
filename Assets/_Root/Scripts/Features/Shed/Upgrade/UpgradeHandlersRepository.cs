@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace NikolayTrofimov_MobileGame
 {
-    internal class UpgradeHandlersRepository : Repository<string, IUpgradeHandler, UpgradeItemConfig>
+    internal class UpgradeHandlersRepository : Repository<string, IUpgradeHandler, IUpgradeItem>
     {
-        public UpgradeHandlersRepository(IEnumerable<UpgradeItemConfig> configs) : base(configs)
+        public UpgradeHandlersRepository(IEnumerable<IUpgradeItem> configs) : base(configs)
         {
         }
 
-        protected override string GetKey(UpgradeItemConfig config)
+        protected override string GetKey(IUpgradeItem config)
         {
             return config.Id;
         }
 
-        protected override IUpgradeHandler CreateItem(UpgradeItemConfig config)
+        protected override IUpgradeHandler CreateItem(IUpgradeItem config)
         {
             return config.Type switch
             {

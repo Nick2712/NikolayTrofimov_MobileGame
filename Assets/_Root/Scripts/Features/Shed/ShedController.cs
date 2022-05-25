@@ -6,19 +6,19 @@ namespace NikolayTrofimov_MobileGame
 {
     internal sealed class ShedController : BaseController
     {
-        private const string VIEW_PATH = "ShedView";
-        private const string DATA_SOURCE_PATH = "UpgradeItemConfigDataSource";
+        private const string SHED_VIEW_PATH = "ShedView";
+        private const string SHED_DATA_SOURCE_PATH = "UpgradeItemConfigDataSource";
+        
+        private readonly IShedView _view;
+        private readonly IProfilePlayer _profilePlayer;
+        private readonly Repository<string, IUpgradeHandler, IUpgradeItem> _upgradeHandlersRepository;
 
-        private readonly ShedView _view;
-        private readonly ProfilePlayer _profilePlayer;
-        private readonly InventoryController _inventoryController;
-        private readonly UpgradeHandlersRepository _upgradeHandlersRepository;
 
-        public ShedController(Transform placeForUI, ProfilePlayer profilePlayer)
+        public ShedController(Transform placeForUI, IProfilePlayer profilePlayer)
         {
             _profilePlayer = profilePlayer;
             _upgradeHandlersRepository = CreateRepository();
-            _inventoryController = CreateInventoryController(placeForUI);
+            CreateInventoryController(placeForUI);
             _view = LoadView(placeForUI);
 
             _view.Init(Apply, Back);
@@ -26,16 +26,17 @@ namespace NikolayTrofimov_MobileGame
 
         private UpgradeHandlersRepository CreateRepository()
         {
-            UpgradeItemConfig[] upgradeItemConfigs = ContentDataSourceLoader.LoadUpgradeItemConfigs(DATA_SOURCE_PATH);
+            UpgradeItemConfig[] upgradeItemConfigs = ContentDataSourceLoader.LoadUpgradeItemConfigs(SHED_DATA_SOURCE_PATH);
             var repository = new UpgradeHandlersRepository(upgradeItemConfigs);
-            AddRepositories(repository);
+            AddRepository(repository);
 
             return repository;
         }
 
         private InventoryController CreateInventoryController(Transform placeForUI)
         {
-            var inventoryController = new InventoryController(placeForUI, _profilePlayer.InventoryModel);
+            var inventoryControllerFactory = new InventoryControllerFactory(placeForUI, _profilePlayer);
+            var inventoryController = inventoryControllerFactory.Create(AddRepository, AddGameObject);
             AddController(inventoryController);
 
             return inventoryController;
@@ -43,7 +44,7 @@ namespace NikolayTrofimov_MobileGame
 
         private ShedView LoadView(Transform placeForUI)
         {
-            GameObject prefab = ResourceLoader.LoadPrefab(VIEW_PATH);
+            GameObject prefab = ResourceLoader.LoadPrefab(SHED_VIEW_PATH);
             GameObject objectView = Object.Instantiate(prefab, placeForUI, false);
             AddGameObject(objectView);
 
@@ -59,12 +60,12 @@ namespace NikolayTrofimov_MobileGame
 
             Debug.Log($"Aply. Current speed {_profilePlayer.Transport.Speed}");
             Debug.Log($"Aply. Current jump height {_profilePlayer.Transport.JumpHeight}");
-            _profilePlayer.GameState.Value = GameState.Start;
+            _profilePlayer.GameState.Value = GameState.MainMenu;
         }
 
         private void Back()
         {
-            _profilePlayer.GameState.Value = GameState.Start;
+            _profilePlayer.GameState.Value = GameState.MainMenu;
             Debug.Log($"Back. Current speed: {_profilePlayer.Transport.Speed}");
             Debug.Log($"Back. Current jump height: {_profilePlayer.Transport.JumpHeight}");
         }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class ShedView : MonoBehaviour
+    internal sealed class ShedView : MonoBehaviour, IShedView
     {
         [SerializeField] private Button _applyButton;
         [SerializeField] private Button _backButton;
