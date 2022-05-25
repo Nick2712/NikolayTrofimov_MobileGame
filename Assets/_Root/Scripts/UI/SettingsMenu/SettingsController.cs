@@ -19,7 +19,7 @@ namespace NikolayTrofimov_MobileGame
 
         private void Back()
         {
-            _profilePlayer.GameState.Value = GameState.Start;
+            _profilePlayer.GameState.Value = GameState.MainMenu;
         }
     }
 }

@@ -3,7 +3,7 @@ namespace NikolayTrofimov_MobileGame
     public enum GameState
     {
         None,
-        Start,
+        MainMenu,
         Game,
         Settings,
         Inventory

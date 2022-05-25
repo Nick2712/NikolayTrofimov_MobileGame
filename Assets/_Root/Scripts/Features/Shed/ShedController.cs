@@ -59,12 +59,12 @@ namespace NikolayTrofimov_MobileGame
 
             Debug.Log($"Aply. Current speed {_profilePlayer.Transport.Speed}");
             Debug.Log($"Aply. Current jump height {_profilePlayer.Transport.JumpHeight}");
-            _profilePlayer.GameState.Value = GameState.Start;
+            _profilePlayer.GameState.Value = GameState.MainMenu;
         }
 
         private void Back()
         {
-            _profilePlayer.GameState.Value = GameState.Start;
+            _profilePlayer.GameState.Value = GameState.MainMenu;
             Debug.Log($"Back. Current speed: {_profilePlayer.Transport.Speed}");
             Debug.Log($"Back. Current jump height: {_profilePlayer.Transport.JumpHeight}");
         }
