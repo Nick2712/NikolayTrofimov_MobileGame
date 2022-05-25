@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class AbilitiesView : MonoBehaviour
+    internal sealed class AbilitiesView : MonoBehaviour, IAbilitiesView
     {
         [SerializeField] private GameObject _abilityButtonPrefab;
         [SerializeField] private Transform _placeForButtons;
 
         private readonly Dictionary<string, AbilityButtonView> _buttonViews = new Dictionary<string, AbilityButtonView>();
 
-        public void Display(IReadOnlyList<IAbilityItem> abilityItems, Action<string> clicked)
+        public void Display(IEnumerable<IAbilityItem> abilityItems, Action<string> clicked)
         {
             Clear();
 

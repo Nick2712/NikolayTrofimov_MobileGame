@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class AbilitiesRepository : Repository<string, IAbility, AbilityItemConfig>
+    internal sealed class AbilitiesRepository : Repository<string, IAbility, AbilityItemConfig>, IAbilitiesRepository
     {
         public AbilitiesRepository(IEnumerable<AbilityItemConfig> configs) : base(configs)
         {
