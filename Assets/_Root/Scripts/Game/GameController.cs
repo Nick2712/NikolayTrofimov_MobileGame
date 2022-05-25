@@ -7,9 +7,7 @@ namespace NikolayTrofimov_MobileGame
     {
         private const string INPUT_KEYBOARD_PATH = "InputKeyboard";
         private const string INPUT_JOYSTICK_PATH = "InputJoystick";
-        private const string ABILITIES_VIEW_PATH = "AbilitiesView";
-        private const string ABILITIES_DATA_PATH = "AbilityItemConfigDataSource";
-
+        
 
         public GameController(ProfilePlayer profilePlayer, Transform placeForUI)
         {
@@ -26,12 +24,8 @@ namespace NikolayTrofimov_MobileGame
 
             UnityAnalitycTools.Instance.SendMessage("Game Started");
 
-            var abilitiesView = LoadAbilitiesView(placeForUI);
-            var abilitiesItemConfigs = LoadAbilityItemConfigs();
-            var abilitiesRepository = CreateAbilitiesRepository(abilitiesItemConfigs);
-
-            var abilitiesController = new AbilitiesController(abilitiesView, abilitiesRepository, 
-                abilitiesItemConfigs, transportController);
+            var abilitiesControllerFactory = new AbilitiesControllerFactory(placeForUI);
+            var abilitiesController = abilitiesControllerFactory.Create(AddRepository, AddGameObject, transportController);
             AddController(abilitiesController);
         }
 
@@ -51,28 +45,6 @@ namespace NikolayTrofimov_MobileGame
                     Debug.LogError($"wrong transport: {profilePlayer.Transport.Type}");
                     return null;
             }
-        }
-
-        private AbilitiesView LoadAbilitiesView(Transform placeForUI)
-        {
-            GameObject prefab = ResourceLoader.LoadPrefab(ABILITIES_VIEW_PATH);
-            GameObject objectView = Object.Instantiate(prefab, placeForUI, false);
-            AddGameObject(objectView);
-
-            return objectView.GetComponent<AbilitiesView>();
-        }
-
-        private AbilitiesRepository CreateAbilitiesRepository(AbilityItemConfig[] abilityItemConfig)
-        {
-            var repository = new AbilitiesRepository(abilityItemConfig);
-            AddRepositories(repository);
-
-            return repository;
-        }
-
-        private AbilityItemConfig[] LoadAbilityItemConfigs()
-        {
-            return ContentDataSourceLoader.LoadAbilityItemConfigs(ABILITIES_DATA_PATH);
         }
     }
 }

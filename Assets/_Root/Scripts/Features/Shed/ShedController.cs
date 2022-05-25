@@ -8,19 +8,17 @@ namespace NikolayTrofimov_MobileGame
     {
         private const string SHED_VIEW_PATH = "ShedView";
         private const string SHED_DATA_SOURCE_PATH = "UpgradeItemConfigDataSource";
-        private const string INVENTORY_VIEW_PATH = "InventoryView";
-        private const string iNVENTORY_DATA_SOURCE_PATH = "ItemConfigDataSource";
-
+        
         private readonly ShedView _view;
         private readonly ProfilePlayer _profilePlayer;
-        private readonly InventoryController _inventoryController;
         private readonly UpgradeHandlersRepository _upgradeHandlersRepository;
+
 
         public ShedController(Transform placeForUI, ProfilePlayer profilePlayer)
         {
             _profilePlayer = profilePlayer;
             _upgradeHandlersRepository = CreateRepository();
-            _inventoryController = CreateInventoryController(placeForUI);
+            CreateInventoryController(placeForUI);
             _view = LoadView(placeForUI);
 
             _view.Init(Apply, Back);
@@ -30,17 +28,15 @@ namespace NikolayTrofimov_MobileGame
         {
             UpgradeItemConfig[] upgradeItemConfigs = ContentDataSourceLoader.LoadUpgradeItemConfigs(SHED_DATA_SOURCE_PATH);
             var repository = new UpgradeHandlersRepository(upgradeItemConfigs);
-            AddRepositories(repository);
+            AddRepository(repository);
 
             return repository;
         }
 
         private InventoryController CreateInventoryController(Transform placeForUI)
         {
-            var inventoryView = LoadInventoryView(placeForUI);
-            var inventoryRepository = CreateInventoryRepository();
-            var inventoryController = new InventoryController(inventoryView, 
-                _profilePlayer.InventoryModel, inventoryRepository);
+            var inventoryControllerFactory = new InventoryControllerFactory(placeForUI, _profilePlayer);
+            var inventoryController = inventoryControllerFactory.Create(AddRepository, AddGameObject);
             AddController(inventoryController);
 
             return inventoryController;
@@ -82,24 +78,6 @@ namespace NikolayTrofimov_MobileGame
                 if (items.TryGetValue(itemID, out IUpgradeHandler upgradeHandler))
                     upgradeHandler.Upgrade(transport);
             }
-        }
-
-        private InventoryView LoadInventoryView(Transform plaseForUI)
-        {
-            GameObject prefab = ResourceLoader.LoadPrefab(INVENTORY_VIEW_PATH);
-            GameObject objectView = Object.Instantiate(prefab, plaseForUI);
-            AddGameObject(objectView);
-
-            return objectView.GetComponent<InventoryView>();
-        }
-
-        private ItemsRepository CreateInventoryRepository()
-        {
-            ItemConfig[] itemConfigs = ContentDataSourceLoader.LoadItemConfigs(iNVENTORY_DATA_SOURCE_PATH);
-            var repository = new ItemsRepository(itemConfigs);
-            AddRepositories(repository);
-
-            return repository;
         }
     }
 }

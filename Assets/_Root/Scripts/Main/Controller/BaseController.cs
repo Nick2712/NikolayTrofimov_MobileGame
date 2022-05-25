@@ -22,7 +22,7 @@ namespace NikolayTrofimov_MobileGame
             _gameObjects.Add(gameObject);
         }
 
-        protected void AddRepositories(IRepository repository)
+        protected void AddRepository(IRepository repository)
         {
             AddDisposable(repository);
         }
