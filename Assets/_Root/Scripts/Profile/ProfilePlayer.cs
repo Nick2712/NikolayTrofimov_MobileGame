@@ -1,10 +1,10 @@
 namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class ProfilePlayer
+    internal sealed class ProfilePlayer : IProfilePlayer
     {
-        public readonly SubscriptionProperty<GameState> GameState;
-        public readonly TransportModel Transport;
-        public readonly InventoryModel InventoryModel;
+        public SubscriptionProperty<GameState> GameState { get; }
+        public TransportModel Transport { get; }
+        public InventoryModel InventoryModel { get; }
 
         public ProfilePlayer(float speed, float jumpHeight, Transport transport)
         {

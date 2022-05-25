@@ -9,10 +9,10 @@ namespace NikolayTrofimov_MobileGame
         private const string VIEW_PATH = "InventoryView";
         private const string DATA_SOURCE_PATH = "ItemConfigDataSource";
 
-        private readonly ProfilePlayer _profilePlayer;
+        private readonly IProfilePlayer _profilePlayer;
         private readonly Transform _placeForUI;
 
-        public InventoryControllerFactory(Transform placeForUI, ProfilePlayer profilePlayer)
+        public InventoryControllerFactory(Transform placeForUI, IProfilePlayer profilePlayer)
         {
             _placeForUI = placeForUI;
             _profilePlayer = profilePlayer;

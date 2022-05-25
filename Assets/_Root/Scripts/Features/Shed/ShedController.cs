@@ -9,12 +9,12 @@ namespace NikolayTrofimov_MobileGame
         private const string SHED_VIEW_PATH = "ShedView";
         private const string SHED_DATA_SOURCE_PATH = "UpgradeItemConfigDataSource";
         
-        private readonly ShedView _view;
-        private readonly ProfilePlayer _profilePlayer;
-        private readonly UpgradeHandlersRepository _upgradeHandlersRepository;
+        private readonly IShedView _view;
+        private readonly IProfilePlayer _profilePlayer;
+        private readonly Repository<string, IUpgradeHandler, IUpgradeItem> _upgradeHandlersRepository;
 
 
-        public ShedController(Transform placeForUI, ProfilePlayer profilePlayer)
+        public ShedController(Transform placeForUI, IProfilePlayer profilePlayer)
         {
             _profilePlayer = profilePlayer;
             _upgradeHandlersRepository = CreateRepository();

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace NikolayTrofimov_MobileGame
 {
     [CreateAssetMenu(fileName = nameof(UpgradeItemConfig), menuName = Constants.MOBILE_GAME + nameof(UpgradeItemConfig))]
-    internal class UpgradeItemConfig : ScriptableObject
+    internal class UpgradeItemConfig : ScriptableObject, IUpgradeItem
     {
         [SerializeField] private ItemConfig _itemConfig;
         [field: SerializeField] public UpgradeType Type { get; private set; }
