@@ -14,39 +14,26 @@ namespace NikolayTrofimov_MobileGame_Lesson5
         private int _healthPlayer;
         private int _powerPlayer;
 
-        public int Power
+
+        public int CalcPower()
         {
-            get
-            {
-                var kHealth = _healthPlayer > MAX_HEALTH_PLAYER ? 100 : 5;
-                var power = (int)(_moneyPlayer / KMONEY + kHealth + _powerPlayer / KPOWER);
+            var kHealth = _healthPlayer > MAX_HEALTH_PLAYER ? 100 : 5;
+            var powerRatio = _powerPlayer / KPOWER;
+            int moneyRatio = _moneyPlayer / KMONEY;
 
-                return power;
-            }
+            return (int)(moneyRatio + kHealth + powerRatio);
         }
-
 
         public Enemy(string name)
         {
             _name = name;
         }
 
-        public void Update(DataPlayer dataPlayer, DataType dataType)
+        public void Update(PlayerData playerData)
         {
-            switch (dataType)
-            {
-                case DataType.Money:
-                    _moneyPlayer = dataPlayer.Money;
-                    break;
-                case DataType.Health:
-                    _healthPlayer = dataPlayer.Health;
-                    break;
-                case DataType.Power:
-                    _powerPlayer = dataPlayer.Power;
-                    break;
-            }
-
-            Debug.Log($"Notified {_name} change to {dataPlayer}");
+            _moneyPlayer = playerData.Value;
+            
+            Debug.Log($"Notified {_name} change to {playerData.DataType}");
         }
     }
 }

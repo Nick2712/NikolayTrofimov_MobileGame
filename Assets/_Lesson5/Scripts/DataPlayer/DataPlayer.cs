@@ -1,48 +1,34 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 namespace NikolayTrofimov_MobileGame_Lesson5
 {
-    internal abstract class DataPlayer
+    internal sealed class PlayerData
     {
-        private string _titleData;
-        private int _countMoney;
-        private int _countHealth;
-        private int _countPower;
+        private int _value;
+        
+        private readonly List<IEnemy> _enemies = new List<IEnemy>();
 
-        private List<IEnemy> _enemies = new List<IEnemy>();
+        public DataType DataType { get; }
 
-        public string TitleData => _titleData;
-
-        public int Money
+        public int Value
         {
-            get => _countMoney;
-            set => SetValue(ref _countMoney, value, DataType.Money);
+            get => _value;
+            set => SetValue(ref _value, value);
         }
-        public int Health
+        
+
+        public PlayerData(DataType dataType)
         {
-            get => _countHealth;
-            set => SetValue(ref _countHealth, value, DataType.Health);
-        }
-        public int Power
-        {
-            get => _countPower;
-            set => SetValue(ref _countPower, value, DataType.Power);
+            DataType = dataType;
         }
 
-
-        public DataPlayer(string titleData)
+        private void SetValue(ref int refValue, int value)
         {
-            _titleData = titleData;
-        }
-
-        private void SetValue(ref int targetValue, int value, DataType dataType)
-        {
-            if (targetValue != value)
+            if (refValue != value)
             {
-                targetValue = value;
-                Notify(dataType);
+                refValue = value;
+                Notify();
             }
         }
 
@@ -56,11 +42,11 @@ namespace NikolayTrofimov_MobileGame_Lesson5
             _enemies.Remove(enemy);
         }
 
-        protected void Notify(DataType dataType)
+        private void Notify()
         {
             foreach(var investor in _enemies)
             {
-                investor.Update(this, dataType);
+                investor.Update(this);
             }
         }
     }

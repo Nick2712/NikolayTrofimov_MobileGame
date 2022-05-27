@@ -13,29 +13,37 @@ namespace NikolayTrofimov_MobileGame_Lesson5
         private const int ADD_INCREMENT = 1;
         private const int MINUS_INCREMENT = -1;
 
+        [Header("Player Stats")]
         [SerializeField] private TMP_Text _countMoneyText;
         [SerializeField] private TMP_Text _countHealthText;
         [SerializeField] private TMP_Text _countPowerText;
+        [Header("Enemy Stats")]
         [SerializeField] private TMP_Text _countPowerEnemyText;
 
-        [SerializeField] private Button _addCoinsButton;
-        [SerializeField] private Button _minusCoinsButton;
+        [Header("Money Buttons")]
+        [SerializeField] private Button _addMoneyButton;
+        [SerializeField] private Button _minusMoneyButton;
 
+
+        [Header("Health Buttons")]
         [SerializeField] private Button _addHealthButton;
         [SerializeField] private Button _minusHealthButton;
 
+        [Header("Power Buttons")]
         [SerializeField] private Button _addPowerButton;
         [SerializeField] private Button _minusPowerButton;
 
+        [Header("Other Buttons")]
         [SerializeField] private Button _fightButton;
 
-        private int _allCountMoneyPlayer;
-        private int _allCountHealthPlayer;
-        private int _allCountPowerPlayer;
+        [Header("Starting Player Parametres")]
+        [SerializeField] private int _startMoney = 1000;
+        [SerializeField] private int _startHealth = 100;
+        [SerializeField] private int _startPower = 1;
 
-        private Money _money;
-        private Health _health;
-        private Power _power;
+        private PlayerData _money;
+        private PlayerData _health;
+        private PlayerData _power;
 
         private Enemy _enemy;
 
@@ -44,72 +52,92 @@ namespace NikolayTrofimov_MobileGame_Lesson5
         {
             _enemy = new Enemy("Enemy Flappy");
 
-            _money = new Money(nameof(Money));
-            _health = new Health(nameof(Health));
-            _power = new Power(nameof(Power));
+            _money = new PlayerData(DataType.Money);
+            _health = new PlayerData(DataType.Health);
+            _power = new PlayerData(DataType.Power);
             _money.Attach(_enemy);
             _health.Attach(_enemy);
             _power.Attach(_enemy);
 
-            _addCoinsButton.onClick.AddListener(() => OnChangeValueButton(ADD_INCREMENT, DataType.Money));
-            _minusCoinsButton.onClick.AddListener(() => OnChangeValueButton(MINUS_INCREMENT, DataType.Money));
-
-            _addHealthButton.onClick.AddListener(() => OnChangeValueButton(ADD_INCREMENT, DataType.Health));
-            _minusHealthButton.onClick.AddListener(() => OnChangeValueButton(MINUS_INCREMENT, DataType.Health));
-
-            _addPowerButton.onClick.AddListener(() => OnChangeValueButton(ADD_INCREMENT, DataType.Power));
-            _minusPowerButton.onClick.AddListener(() => OnChangeValueButton(MINUS_INCREMENT, DataType.Power));
-
-            _fightButton.onClick.AddListener(Fight);
+            Subscribe();
 
             InitializeView();
         }
 
+        private void Subscribe()
+        {
+            _addMoneyButton.onClick.AddListener(() => OnChangeValueButton(ADD_INCREMENT, _money));
+            _minusMoneyButton.onClick.AddListener(() => OnChangeValueButton(MINUS_INCREMENT, _money));
+
+            _addHealthButton.onClick.AddListener(() => OnChangeValueButton(ADD_INCREMENT, _health));
+            _minusHealthButton.onClick.AddListener(() => OnChangeValueButton(MINUS_INCREMENT, _health));
+
+            _addPowerButton.onClick.AddListener(() => OnChangeValueButton(ADD_INCREMENT, _power));
+            _minusPowerButton.onClick.AddListener(() => OnChangeValueButton(MINUS_INCREMENT, _power));
+
+            _fightButton.onClick.AddListener(Fight);
+        }
+
         private void InitializeView()
         {
-            OnChangeValueButton(0, DataType.Money);
-            OnChangeValueButton(0, DataType.Health);
-            OnChangeValueButton(0, DataType.Power);
+            OnChangeValueButton(_startMoney, _money);
+            OnChangeValueButton(_startHealth, _health);
+            OnChangeValueButton(_startPower, _power);
         }
 
-        private void OnChangeValueButton(int increment, DataType dataType)
+        private void OnChangeValueButton(int increment, PlayerData playerData)
         {
-            switch (dataType)
+            playerData.Value += increment;
+
+            switch (playerData.DataType)
             {
                 case DataType.Money:
-                    ChangeData(ref _allCountMoneyPlayer, increment);
-                    _money.Money = _allCountMoneyPlayer;
-                    ChangeDataWindow(_countMoneyText, _allCountMoneyPlayer, MONEY_TEXT);
+                    ChangeDataWindow(_countMoneyText, playerData.Value, MONEY_TEXT);
                     break;
                 case DataType.Health:
-                    ChangeData(ref _allCountHealthPlayer, increment);
-                    _health.Health = _allCountHealthPlayer;
-                    ChangeDataWindow(_countHealthText, _allCountHealthPlayer, HEALTH_TEXT);
+                    ChangeDataWindow(_countHealthText, playerData.Value, HEALTH_TEXT);
                     break;
                 case DataType.Power:
-                    ChangeData(ref _allCountPowerPlayer, increment);
-                    _power.Power = _allCountPowerPlayer;
-                    ChangeDataWindow(_countPowerText, _allCountPowerPlayer, POWER_TEXT);
+                    ChangeDataWindow(_countPowerText, playerData.Value, POWER_TEXT);
                     break;
             }
-        }
-
-        private void ChangeData(ref int targetValue, int increment)
-        {
-            targetValue += increment;
         }
 
         private void ChangeDataWindow(TMP_Text text, int data, string aditionalText)
         {
             text.text = $"{aditionalText}{data}";
-            _countPowerEnemyText.text = $"Enemy Power {_enemy.Power}";
+            _countPowerEnemyText.text = $"Enemy Power {_enemy.CalcPower()}";
         }
 
         private void Fight()
         {
-            Debug.Log(_allCountPowerPlayer >= _enemy.Power
-                ? "<color=#07FF00>Win!!!</color>"
-                : "<color=#FF0000>Lose!!!</color>");
+            bool isWin = _power.Value >= _enemy.CalcPower();
+            string message = isWin ? "Win!!!" : "Lose!!!";
+            string color = isWin ? "#07FF00" : "#FF0000";
+
+            Debug.Log($"<color={color}>{message}</color>");
+        }
+
+        private void Unsubscribe()
+        {
+            _addMoneyButton.onClick.RemoveAllListeners();
+            _minusMoneyButton.onClick.RemoveAllListeners();
+
+            _addHealthButton.onClick.RemoveAllListeners();
+            _minusHealthButton.onClick.RemoveAllListeners();
+
+            _addPowerButton.onClick.RemoveAllListeners();
+            _minusPowerButton.onClick.RemoveAllListeners();
+
+            _fightButton.onClick.RemoveAllListeners();
+        }
+
+        private void OnDestroy()
+        {
+            Unsubscribe();
+            _money.Detach(_enemy);
+            _health.Detach(_enemy);
+            _power.Detach(_enemy);
         }
     }
 }

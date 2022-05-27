@@ -1204,8 +1204,8 @@ MonoBehaviour:
   _countHealthText: {fileID: 43702773}
   _countPowerText: {fileID: 174768061}
   _countPowerEnemyText: {fileID: 470446041}
-  _addCoinsButton: {fileID: 1036078726}
-  _minusCoinsButton: {fileID: 1393492138}
+  _addMoneyButton: {fileID: 1036078726}
+  _minusMoneyButton: {fileID: 1393492138}
   _addHealthButton: {fileID: 938518934}
   _minusHealthButton: {fileID: 1581447268}
   _addPowerButton: {fileID: 1983723648}
