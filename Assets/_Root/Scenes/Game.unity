@@ -153,10 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _placeForUI: {fileID: 1021772926}
-  _speed: 20
-  _transport: 2
-  _settings: {fileID: 11400000, guid: 03a4b0a40104cc742a2a435350eeb376, type: 2}
-  _library: {fileID: 11400000, guid: 926a6b2788dab8d4fa1c4eb8d6ff355f, type: 2}
 --- !u!224 &483872399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -227,7 +223,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 1
   orthographic size: 10
