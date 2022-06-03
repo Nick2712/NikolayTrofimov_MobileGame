@@ -15,11 +15,21 @@ namespace NikolayTrofimov_MobileGame_Lesson6
 
         private bool _isGetReward;
         private bool _isInitialized;
+        private readonly string _periodName;
 
 
         public DailyRewardController(DailyRewardView view)
         {
             _view = view;
+            switch(_view.RewardPeriodType)
+            {
+                case RewardPeriodType.Daily:
+                    _periodName = "Day";
+                    break;
+                case RewardPeriodType.Weekly:
+                    _periodName = "Week";
+                    break;
+            }
         }
 
         public void Init()
@@ -181,7 +191,7 @@ namespace NikolayTrofimov_MobileGame_Lesson6
                 int countDay = i + 1;
                 bool isSelected = i == _view.CurrencySlotInActive;
 
-                _slots[i].SetData(reward, countDay, isSelected);
+                _slots[i].SetData(reward, countDay, isSelected, _periodName);
             }
         }
 

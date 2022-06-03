@@ -1643,8 +1643,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d179210e503c8ec449bb303b40548684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TimeCooldown>k__BackingField: 5
-  <TimeDeadLine>k__BackingField: 10
+  _dailyTimeCooldown: 5
+  _weeklyTimeCooldown: 10
+  <RewardPeriodType>k__BackingField: 1
   <Rewards>k__BackingField:
   - <RewardType>k__BackingField: 0
     <Icon>k__BackingField: {fileID: 21300000, guid: e0eac6b76fdd842e88a7f8c75ecffaf4, type: 3}
@@ -1652,6 +1653,12 @@ MonoBehaviour:
   - <RewardType>k__BackingField: 1
     <Icon>k__BackingField: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
     <Count>k__BackingField: 20
+  - <RewardType>k__BackingField: 0
+    <Icon>k__BackingField: {fileID: 21300000, guid: e0eac6b76fdd842e88a7f8c75ecffaf4, type: 3}
+    <Count>k__BackingField: 40
+  - <RewardType>k__BackingField: 1
+    <Icon>k__BackingField: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
+    <Count>k__BackingField: 40
   <TimerNewReward>k__BackingField: {fileID: 2134176042}
   <MountRootSlotReward>k__BackingField: {fileID: 1318572376}
   <ContainerSlotRewardViewPrefab>k__BackingField: {fileID: 5274223176599924511, guid: 9acd575566a425741b3257bcc7913c1c, type: 3}
