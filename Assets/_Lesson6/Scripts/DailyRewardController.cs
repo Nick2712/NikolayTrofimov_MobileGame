@@ -137,10 +137,7 @@ namespace NikolayTrofimov_MobileGame_Lesson6
 
             TimeSpan timeFromLastRewardGetting = DateTime.UtcNow - _view.TimeGetReward.Value;
 
-            bool isDeadLineElapsed = timeFromLastRewardGetting.Seconds >= _view.TimeDeadLine;
             bool isTimeToGetNewReward = timeFromLastRewardGetting.Seconds >= _view.TimeCooldown;
-
-            if (isDeadLineElapsed) ResetRewardsState();
 
             _isGetReward = isTimeToGetNewReward;
         }

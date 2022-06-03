@@ -14,8 +14,7 @@ namespace NikolayTrofimov_MobileGame_Lesson6
 
         [field: Header("Settings Time Get Reward")]
         [field: SerializeField] public float TimeCooldown { get; private set; } = 86400;
-        [field: SerializeField] public float TimeDeadLine { get; private set; } = 172800;
-
+        
         [field: Header("Settings Rewards")]
         [field: SerializeField] public List<Reward> Rewards { get; private set; }
 
@@ -30,7 +29,11 @@ namespace NikolayTrofimov_MobileGame_Lesson6
         public int CurrencySlotInActive
         {
             get => PlayerPrefs.GetInt(CURRENCY_SLOT_IN_ACTIVE_KEY);
-            set => PlayerPrefs.SetInt(CURRENCY_SLOT_IN_ACTIVE_KEY, value);
+            set
+            {
+                if (value >= Rewards.Count) value = 0;
+                PlayerPrefs.SetInt(CURRENCY_SLOT_IN_ACTIVE_KEY, value);
+            }
         }
 
         public DateTime? TimeGetReward
