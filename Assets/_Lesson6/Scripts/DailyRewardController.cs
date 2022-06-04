@@ -21,7 +21,7 @@ namespace NikolayTrofimov_MobileGame_Lesson6
         public DailyRewardController(DailyRewardView view)
         {
             _view = view;
-            switch(_view.RewardPeriodType)
+            switch (_view.RewardPeriodType)
             {
                 case RewardPeriodType.Daily:
                     _periodName = "Day";
@@ -119,7 +119,7 @@ namespace NikolayTrofimov_MobileGame_Lesson6
 
             Reward reward = _view.Rewards[_view.CurrencySlotInActive];
 
-            switch(reward.RewardType)
+            switch (reward.RewardType)
             {
                 case RewardType.Wood:
                     CurrencyVeiw.Inctance.AddWood(reward.Count);
@@ -131,6 +131,7 @@ namespace NikolayTrofimov_MobileGame_Lesson6
 
             _view.TimeGetReward = DateTime.UtcNow;
             _view.CurrencySlotInActive++;
+            _isGetReward = false;
 
             RefreshRewardsState();
         }
@@ -139,17 +140,20 @@ namespace NikolayTrofimov_MobileGame_Lesson6
         {
             bool gotRewardEarlier = _view.TimeGetReward.HasValue;
 
-            if(!gotRewardEarlier)
+            if (!gotRewardEarlier)
             {
                 _isGetReward = true;
                 return;
             }
 
-            TimeSpan timeFromLastRewardGetting = DateTime.UtcNow - _view.TimeGetReward.Value;
+            if (!_isGetReward)
+            {
+                TimeSpan timeFromLastRewardGetting = DateTime.UtcNow - _view.TimeGetReward.Value;
 
-            bool isTimeToGetNewReward = timeFromLastRewardGetting.Seconds >= _view.TimeCooldown;
+                bool isTimeToGetNewReward = timeFromLastRewardGetting.TotalSeconds >= _view.TimeCooldown;
 
-            _isGetReward = isTimeToGetNewReward;
+                _isGetReward = isTimeToGetNewReward;
+            }
         }
 
         private void ResetRewardsState()
@@ -168,9 +172,9 @@ namespace NikolayTrofimov_MobileGame_Lesson6
         private string GetTimerNewRewardText()
         {
             if (_isGetReward) return "Reward is ready to be received!";
-            if(_view.TimeGetReward.HasValue)
+            if (_view.TimeGetReward.HasValue)
             {
-                DateTime nextClaimTime =_view.TimeGetReward.Value.AddSeconds(_view.TimeCooldown);
+                DateTime nextClaimTime = _view.TimeGetReward.Value.AddSeconds(_view.TimeCooldown);
                 TimeSpan currentClaimCooldown = nextClaimTime - DateTime.UtcNow;
 
                 string timeGetReward =
@@ -197,7 +201,7 @@ namespace NikolayTrofimov_MobileGame_Lesson6
 
         private void DeinitSlots()
         {
-            foreach(ContainerSlotRewardView instanceSlot in _slots)
+            foreach (ContainerSlotRewardView instanceSlot in _slots)
             {
                 UnityEngine.Object.Destroy(instanceSlot.gameObject);
             }
