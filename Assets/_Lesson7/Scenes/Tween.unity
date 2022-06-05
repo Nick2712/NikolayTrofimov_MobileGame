@@ -262,8 +262,8 @@ MonoBehaviour:
   _rectTransform: {fileID: 75595314}
   _animationButtonType: 2
   _curveEase: 1
-  _duration: 0.6
-  _strength: 3
+  _duration: 5
+  _strength: 20
 --- !u!1 &128661935
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,8 +939,8 @@ MonoBehaviour:
   _rectTransform: {fileID: 1989005269}
   _animationButtonType: 1
   _curveEase: 1
-  _duration: 0.6
-  _strength: 30
+  _duration: 5
+  _strength: 20
 --- !u!114 &1989005271
 MonoBehaviour:
   m_ObjectHideFlags: 0

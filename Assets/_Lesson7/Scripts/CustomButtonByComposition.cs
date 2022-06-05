@@ -1,4 +1,6 @@
 using DG.Tweening;
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +21,25 @@ namespace NikolayTrofimov_MobileGame_Lesson7
         [SerializeField] private float _duration = 0.6f;
         [SerializeField] private float _strength = 30.0f;
 
+        private Tweener _tweener;
+        private AnimationButtonPlayer _animationPlayer;
+        
+
+        [ContextMenu(nameof(Play))]
+        public void Play()
+        {
+            Stop();
+
+            OnButtonClick();
+        }
+
+        [ContextMenu(nameof(Stop))]
+        public void Stop()
+        {
+            if (!_animationPlayer.IsAnimationPlaying) return;
+
+            _tweener.Kill(true);
+        }
 
         private void OnValidate()
         {
@@ -33,6 +54,7 @@ namespace NikolayTrofimov_MobileGame_Lesson7
         private void Start()
         {
             _button.onClick.AddListener(OnButtonClick);
+            _animationPlayer = new AnimationButtonPlayer(_rectTransform);
         }
 
         private void InitComponents()
@@ -43,20 +65,7 @@ namespace NikolayTrofimov_MobileGame_Lesson7
 
         private void OnButtonClick()
         {
-            ActivateAnimation();
-        }
-
-        private void ActivateAnimation()
-        {
-            switch (_animationButtonType)
-            {
-                case AnimationButtonType.ChangeRotation:
-                    _rectTransform.DOShakeRotation(_duration, Vector3.forward * _strength).SetEase(_curveEase);
-                    break;
-                case AnimationButtonType.ChangePosition:
-                    _rectTransform.DOShakeAnchorPos(_strength, Vector2.one * _strength).SetEase(_curveEase);
-                    break;
-            }
+            _tweener = _animationPlayer.ActivateAnimation(_animationButtonType, _duration, _strength, _curveEase);
         }
 
         private void OnDestroy()
