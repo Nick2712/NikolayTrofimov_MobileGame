@@ -260,10 +260,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 75595315}
   _rectTransform: {fileID: 75595314}
+  _image: {fileID: 75595316}
   _animationButtonType: 2
   _curveEase: 1
-  _duration: 5
-  _strength: 20
+  _animationDuration: 5
+  _strength: 10
+  _newColor: {r: 1, g: 0, b: 0, a: 1}
+  _colorChangingDuration: 0.6
 --- !u!1 &128661935
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,10 +940,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _rectTransform: {fileID: 1989005269}
+  _image: {fileID: 1989005271}
   _animationButtonType: 1
   _curveEase: 1
-  _duration: 5
+  _animationDuration: 0.6
   _strength: 20
+  _newColor: {r: 1, g: 0, b: 0, a: 1}
+  _colorChangingDuration: 5
 --- !u!114 &1989005271
 MonoBehaviour:
   m_ObjectHideFlags: 0

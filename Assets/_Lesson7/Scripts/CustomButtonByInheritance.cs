@@ -7,22 +7,29 @@ using UnityEngine.UI;
 namespace NikolayTrofimov_MobileGame_Lesson7
 {
     [RequireComponent(typeof(RectTransform))]
+    [RequireComponent(typeof(Image))]
     public class CustomButtonByInheritance : Button
     {
         public static string AnimationTypeName => nameof(_animationButtonType);
         public static string CurveEaseName => nameof(_curveEase);
-        public static string DurationName => nameof(_duration);
+        public static string AnimationDurationName => nameof(_animationDuration);
         public static string StrengthName => nameof(_strength);
+        public static string NewColorName => nameof(_newColor);
+        public static string ColorChangingDuration => nameof(_colorChangingDuration);
 
         [SerializeField] private RectTransform _rectTransform;
+        [SerializeField] private Image _image;
 
         [SerializeField] private AnimationButtonType _animationButtonType = AnimationButtonType.ChangeRotation;
         [SerializeField] private Ease _curveEase = Ease.Linear;
-        [SerializeField] private float _duration = 0.6f;
+        [SerializeField] private float _animationDuration = 0.6f;
         [SerializeField] private float _strength = 30.0f;
+        [SerializeField] private Color _newColor = Color.red;
+        [SerializeField] private float _colorChangingDuration = 0.6f;
 
-        private Tweener _tweener;
         private AnimationButtonPlayer _animationPlayer;
+        private Color _defaultColor;
+        private ColorButtonChanger _colorButtonChanger;
 
 
         [ContextMenu(nameof(Play))]
@@ -30,39 +37,68 @@ namespace NikolayTrofimov_MobileGame_Lesson7
         {
             Stop();
 
-            _tweener = _animationPlayer.ActivateAnimation(_animationButtonType, _duration, _strength, _curveEase);
+            StartAnimation();
         }
 
         [ContextMenu(nameof(Stop))]
         public void Stop()
         {
-            if (!_animationPlayer.IsAnimationPlaying) return;
+            _animationPlayer.TryStopAnimation();
+        }
 
-            _tweener.Kill(true);
+        [ContextMenu(nameof(ChangeColor))]
+        public void ChangeColor()
+        {
+            StartChangeColor();
+        }
+
+        [ContextMenu(nameof(ResetColor))]
+        public void ResetColor()
+        {
+            _colorButtonChanger.TryStopColorChanging();
+            _colorButtonChanger.ResetColor();
         }
 
         protected override void Awake()
         {
             base.Awake();
-            InitRectTransform();
+            InitComponents();
             _animationPlayer = new AnimationButtonPlayer(_rectTransform);
+
+            _defaultColor = _image.color;
+            _colorButtonChanger = new ColorButtonChanger(_image);
         }
 
         protected override void OnValidate()
         {
             base.OnValidate();
-            InitRectTransform();
+            InitComponents();
         }
 
-        private void InitRectTransform()
+        private void InitComponents()
         {
             _rectTransform ??= GetComponent<RectTransform>();
+            _image ??= GetComponent<Image>();
         }
 
         public override void OnPointerClick(PointerEventData eventData)
         {
             base.OnPointerClick(eventData);
-            _tweener = _animationPlayer.ActivateAnimation(_animationButtonType, _duration, _strength, _curveEase);
+            StartAnimation();
+            StartChangeColor();
+        }
+
+        private void StartAnimation()
+        {
+            _animationPlayer.TryStopAnimation();
+
+            _animationPlayer.TryActivateAnimation(_animationButtonType, _animationDuration, _strength, _curveEase);
+        }
+
+        private void StartChangeColor()
+        {
+            if (_image.color == _defaultColor) _colorButtonChanger.TryStartChangeColor(_newColor, _colorChangingDuration);
+            else _colorButtonChanger.TryStartChangeColor(_defaultColor, _colorChangingDuration);
         }
     }
 }

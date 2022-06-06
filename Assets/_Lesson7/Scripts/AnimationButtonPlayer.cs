@@ -7,39 +7,52 @@ namespace NikolayTrofimov_MobileGame_Lesson7
     internal sealed class AnimationButtonPlayer
     {
         public bool IsAnimationPlaying { get; private set; }
-        private RectTransform _rectTransform;
-        private readonly RectTransform _defaultPosition;
+        private readonly RectTransform _rectTransform;
+        private readonly Vector3 _defaultPosition;
+        private readonly Quaternion _defaultRotation;
+        private Tweener _tweener;
 
 
         public AnimationButtonPlayer(RectTransform rectTransform)
         {
             _rectTransform = rectTransform;
-            _defaultPosition = rectTransform;
+            _defaultPosition = rectTransform.position;
+            _defaultRotation = rectTransform.rotation;
         }
 
-        public Tweener ActivateAnimation(AnimationButtonType animationButtonType, float duration,
+        public void TryActivateAnimation(AnimationButtonType animationButtonType, float duration,
             float strength, Ease curveEase)
         {
+            if (IsAnimationPlaying) return;
+
             IsAnimationPlaying = true;
 
-            return animationButtonType switch
+            switch (animationButtonType)
             {
-                AnimationButtonType.ChangeRotation => _rectTransform
-                                        .DOShakeRotation(duration, Vector3.forward * strength)
-                                        .SetEase(curveEase)
-                                        .OnComplete(OnStopAnimation),
-                AnimationButtonType.ChangePosition => _rectTransform
-                                        .DOShakeAnchorPos(duration, Vector2.one * strength)
-                                        .SetEase(curveEase)
-                                        .OnComplete(OnStopAnimation),
-                _ => null,
-            };
+                case AnimationButtonType.ChangeRotation:
+                    _tweener = _rectTransform
+                        .DOShakeRotation(duration, Vector3.forward * strength)
+                        .SetEase(curveEase)
+                        .OnComplete(OnStopAnimation);
+                    break;
+                case AnimationButtonType.ChangePosition:
+                    _tweener = _rectTransform
+                        .DOShakeAnchorPos(duration, Vector2.one * strength)
+                        .SetEase(curveEase)
+                        .OnComplete(OnStopAnimation);
+                    break;
+            }
         }
 
         private void OnStopAnimation()
         {
             IsAnimationPlaying = false;
-            _rectTransform = _defaultPosition;
+            _rectTransform.SetPositionAndRotation(_defaultPosition, _defaultRotation);
+        }
+
+        public void TryStopAnimation()
+        {
+            if (IsAnimationPlaying) _tweener.Kill(true);
         }
     }
 }

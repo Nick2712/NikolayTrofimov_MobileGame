@@ -22,8 +22,10 @@ namespace NikolayTrofimov_MobileGame_Lesson7
 
             var animationType = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.AnimationTypeName));
             var curveEase = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.CurveEaseName));
-            var duration = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.DurationName));
+            var animationDuration = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.AnimationDurationName));
             var strength = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.StrengthName));
+            var newColor = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.NewColorName));
+            var colorChangingDuration = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.ColorChangingDuration));
 
             var tweenLaber = new Label("Settings Tween");
             var interactableLabel = new Label("Interactable");
@@ -31,8 +33,10 @@ namespace NikolayTrofimov_MobileGame_Lesson7
             root.Add(tweenLaber);
             root.Add(animationType);
             root.Add(curveEase);
-            root.Add(duration);
+            root.Add(animationDuration);
             root.Add(strength);
+            root.Add(newColor);
+            root.Add(colorChangingDuration);
 
             root.Add(interactableLabel);
             root.Add(new IMGUIContainer(OnInspectorGUI));
