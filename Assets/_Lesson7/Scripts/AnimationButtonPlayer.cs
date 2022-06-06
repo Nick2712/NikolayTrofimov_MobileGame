@@ -8,16 +8,12 @@ namespace NikolayTrofimov_MobileGame_Lesson7
     {
         public bool IsAnimationPlaying { get; private set; }
         private readonly RectTransform _rectTransform;
-        private readonly Vector3 _defaultPosition;
-        private readonly Quaternion _defaultRotation;
         private Tweener _tweener;
-
+        
 
         public AnimationButtonPlayer(RectTransform rectTransform)
         {
             _rectTransform = rectTransform;
-            _defaultPosition = rectTransform.position;
-            _defaultRotation = rectTransform.rotation;
         }
 
         public void TryActivateAnimation(AnimationButtonType animationButtonType, float duration,
@@ -47,7 +43,6 @@ namespace NikolayTrofimov_MobileGame_Lesson7
         private void OnStopAnimation()
         {
             IsAnimationPlaying = false;
-            _rectTransform.SetPositionAndRotation(_defaultPosition, _defaultRotation);
         }
 
         public void TryStopAnimation()
