@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 
 
-namespace NikolayTrofimov_MobileGame_Lesson7
+namespace NikolayTrofimov_MobileGame
 {
     internal sealed class AnimationButtonPlayer
     {

@@ -2,6 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using NikolayTrofimov_MobileGame;
 
 
 namespace NikolayTrofimov_MobileGame_Lesson7

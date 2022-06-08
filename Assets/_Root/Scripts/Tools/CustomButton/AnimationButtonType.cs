@@ -1,4 +1,4 @@
-﻿namespace NikolayTrofimov_MobileGame_Lesson7
+﻿namespace NikolayTrofimov_MobileGame
 {
     internal enum AnimationButtonType
     {
