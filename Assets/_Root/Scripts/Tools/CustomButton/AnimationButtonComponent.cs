@@ -49,6 +49,11 @@ namespace NikolayTrofimov_MobileGame
                 _animationDuration, _strength, _curveEase);
         }
 
-        private void OnDestroy() => _button.onClick.RemoveAllListeners();
+        private void OnDestroy()
+        {
+            _button.onClick.RemoveAllListeners();
+
+            _animationPlayer.TryStopAnimation();
+        }
     }
 }

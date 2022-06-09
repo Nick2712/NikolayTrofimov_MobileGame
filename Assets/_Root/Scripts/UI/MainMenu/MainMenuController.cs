@@ -14,7 +14,8 @@ namespace NikolayTrofimov_MobileGame
         {
             _profilePlayer = profilePlayer;
             var mainMenu = Object.Instantiate(ResourceLoader.LoadPrefab(PATH), placeForUI);
-            mainMenu.GetComponent<MainMenuView>().Init(StartGame, Settings, ShowReward, PurchaseSomething, Shed);
+            mainMenu.GetComponent<MainMenuView>().Init(StartGame, Settings, ShowReward, 
+                BuyProduct, Shed, DailyReward, Exit);
             AddGameObject(mainMenu);
         }
 
@@ -33,7 +34,7 @@ namespace NikolayTrofimov_MobileGame
             UnityAdsService.Instance.RewardedPlayer.Play();
         }
 
-        private void PurchaseSomething()
+        private void BuyProduct()
         {
             IAPService.Instance.Buy(IAPService.Instance.ProductLibrary.Products[0].Id);
         }
@@ -41,6 +42,16 @@ namespace NikolayTrofimov_MobileGame
         private void Shed()
         {
             _profilePlayer.GameState.Value = GameState.Inventory;
+        }
+
+        private void Exit()
+        {
+
+        }
+
+        private void DailyReward()
+        {
+
         }
     }
 }
