@@ -7,6 +7,7 @@ namespace NikolayTrofimov_MobileGame
         public InventoryModel InventoryModel { get; }
 
         public readonly CurrencyModel Currency;
+        public readonly PauseModel Pause;
 
 
         public ProfilePlayer(float speed, float jumpHeight, Transport transport)
@@ -15,6 +16,7 @@ namespace NikolayTrofimov_MobileGame
             GameState = new SubscriptionProperty<GameState>();
             InventoryModel = new InventoryModel();
             Currency = new CurrencyModel();
+            Pause = new PauseModel();
         }
     }
 }

@@ -15,11 +15,13 @@ namespace NikolayTrofimov_MobileGame
             AddController(new BackgroundController(horizontalMove, profilePlayer));
 #if MOBILE_INPUT
 		    var input = Object.Instantiate(ResourceLoader.LoadPrefab(INPUT_JOYSTICK_PATH));
+            input.GetComponent<InputJoystickView>().Init(horizontalMove, profilePlayer.Transport.Speed, profilePlayer);
 #else
             var input = Object.Instantiate(ResourceLoader.LoadPrefab(INPUT_KEYBOARD_PATH));
+            input.GetComponent<BaseInputView>().Init(horizontalMove, profilePlayer.Transport.Speed);
 #endif
             AddGameObject(input);
-            input.GetComponent<BaseInputView>().Init(horizontalMove, profilePlayer.Transport.Speed);
+            
             IAbilityActivator transportController = CreateTransportController(profilePlayer);
 
             UnityAnalitycTools.Instance.SendMessage("Game Started");
@@ -31,6 +33,8 @@ namespace NikolayTrofimov_MobileGame
             AddController(new StartFightController(placeForUI, profilePlayer));
 
             AddController(new ReturnToMainMenuController(placeForUI, profilePlayer));
+
+            AddController(new PauseController(placeForUI, profilePlayer));
         }
 
         private IAbilityActivator CreateTransportController(ProfilePlayer profilePlayer)
