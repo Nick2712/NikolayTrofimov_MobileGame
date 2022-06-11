@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace NikolayTrofimov_MobileGame_Lesson5
+namespace NikolayTrofimov_MobileGame
 {
     internal sealed class CrimeListener : IEnemy
     {

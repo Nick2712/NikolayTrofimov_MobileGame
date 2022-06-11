@@ -40,6 +40,9 @@ namespace NikolayTrofimov_MobileGame
                 case GameState.DailyReward:
                     _currentStateController = new RewardController(_placeForUI, _profilePlayer);
                     break;
+                case GameState.Fight:
+                    _currentStateController = new FightController(_placeForUI, _profilePlayer);
+                    break;
             }
         }
 

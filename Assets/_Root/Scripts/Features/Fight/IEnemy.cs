@@ -1,4 +1,4 @@
-﻿namespace NikolayTrofimov_MobileGame_Lesson5
+﻿namespace NikolayTrofimov_MobileGame
 {
     internal interface IEnemy
     {

@@ -27,6 +27,8 @@ namespace NikolayTrofimov_MobileGame
             var abilitiesControllerFactory = new AbilitiesControllerFactory(placeForUI);
             var abilitiesController = abilitiesControllerFactory.Create(AddRepository, AddGameObject, transportController);
             AddController(abilitiesController);
+
+            AddController(new StartFightController(placeForUI, profilePlayer));
         }
 
         private IAbilityActivator CreateTransportController(ProfilePlayer profilePlayer)

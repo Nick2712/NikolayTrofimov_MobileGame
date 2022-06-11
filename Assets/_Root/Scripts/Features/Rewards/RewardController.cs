@@ -18,8 +18,7 @@ namespace NikolayTrofimov_MobileGame
         private Coroutine _coroutine;
 
         private bool _isGetReward;
-        private bool _isInitialized;
-
+        
 
         public RewardController(Transform placeForUI, ProfilePlayer profilePlayer)
         {
@@ -38,25 +37,17 @@ namespace NikolayTrofimov_MobileGame
 
         private void Init()
         {
-            if (_isInitialized) return;
-
             InitSlots();
             RefreshUI();
             StartRewardsUpdating();
             SubscribeButtons();
-
-            _isInitialized = true;
         }
 
         private void Deinit()
         {
-            if (!_isInitialized) return;
-
             DeinitSlots();
             StopRewardsUpdating();
             UnsubscribeButtons();
-
-            _isInitialized = false;
         }
 
         private void InitSlots()

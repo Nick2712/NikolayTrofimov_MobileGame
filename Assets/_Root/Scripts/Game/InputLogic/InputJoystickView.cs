@@ -21,5 +21,12 @@ namespace NikolayTrofimov_MobileGame
                 _horizontalMove.Value = 0;
             }
         }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            CrossPlatformInputManager.UnRegisterVirtualAxis("Horizontal");
+        }
     }
 }

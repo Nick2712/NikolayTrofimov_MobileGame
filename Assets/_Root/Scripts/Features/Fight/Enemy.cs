@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace NikolayTrofimov_MobileGame_Lesson5
+namespace NikolayTrofimov_MobileGame
 {
     internal sealed class Enemy : IEnemy
     {

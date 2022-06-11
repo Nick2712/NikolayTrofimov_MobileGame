@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -20,6 +21,14 @@ namespace NikolayTrofimov_MobileGame
             _view.Init(_model.Wood.Value, _model.Diamond.Value);
 
             Subscribe();
+
+            InitializeData();
+        }
+
+        private void InitializeData()
+        {
+            _model.Wood.Value = PlayerPrefs.GetInt(WOOD_KEY, 0);
+            _model.Diamond.Value = PlayerPrefs.GetInt(DIAMOND_KEY, 0);
         }
 
         private void Subscribe()
