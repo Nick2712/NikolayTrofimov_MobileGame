@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace NikolayTrofimov_MobileGame_Lesson6
+namespace NikolayTrofimov_MobileGame
 {
     internal class ContainerSlotRewardView : MonoBehaviour
     {

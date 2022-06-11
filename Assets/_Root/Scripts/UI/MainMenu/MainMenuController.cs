@@ -46,12 +46,15 @@ namespace NikolayTrofimov_MobileGame
 
         private void Exit()
         {
-
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+            Application.Quit();
         }
 
         private void DailyReward()
         {
-
+            _profilePlayer.GameState.Value = GameState.DailyReward;
         }
     }
 }

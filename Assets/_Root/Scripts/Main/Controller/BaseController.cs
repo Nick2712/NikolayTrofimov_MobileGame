@@ -71,5 +71,14 @@ namespace NikolayTrofimov_MobileGame
 
         protected virtual void OnDispose()
         { }
+
+        protected T LoadView<T>(Transform placeForUI, string resourcePath) where T : MonoBehaviour
+        {
+            GameObject prefab = ResourceLoader.LoadPrefab(resourcePath);
+            GameObject objectView = UnityEngine.Object.Instantiate(prefab, placeForUI, false);
+            AddGameObject(objectView);
+
+            return objectView.GetComponent<T>();
+        }
     }
 }

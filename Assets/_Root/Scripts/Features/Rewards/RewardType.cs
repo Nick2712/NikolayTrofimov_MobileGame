@@ -1,4 +1,4 @@
-namespace NikolayTrofimov_MobileGame_Lesson6
+namespace NikolayTrofimov_MobileGame
 {
     internal enum RewardType
     {

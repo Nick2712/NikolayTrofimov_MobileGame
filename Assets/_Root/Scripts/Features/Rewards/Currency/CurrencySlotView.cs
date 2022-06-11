@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 
-namespace NikolayTrofimov_MobileGame_Lesson6
+namespace NikolayTrofimov_MobileGame
 {
     internal sealed class CurrencySlotView : MonoBehaviour
     {

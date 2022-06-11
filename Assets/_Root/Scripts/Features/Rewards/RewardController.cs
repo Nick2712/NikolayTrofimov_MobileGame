@@ -4,35 +4,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace NikolayTrofimov_MobileGame_Lesson6
+namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class DailyRewardController
+    internal sealed class RewardController : BaseController
     {
-        private readonly DailyRewardView _view;
+        private readonly string PERIOD_NAME = "Day";
+        private const string VIEW_PATH = "RewardWindow";
+
+        private readonly ProfilePlayer _profilePlayer;
+        private readonly RewardView _view;
 
         private List<ContainerSlotRewardView> _slots;
         private Coroutine _coroutine;
 
         private bool _isGetReward;
         private bool _isInitialized;
-        private readonly string _periodName;
 
 
-        public DailyRewardController(DailyRewardView view)
+        public RewardController(Transform placeForUI, ProfilePlayer profilePlayer)
         {
-            _view = view;
-            switch (_view.RewardPeriodType)
-            {
-                case RewardPeriodType.Daily:
-                    _periodName = "Day";
-                    break;
-                case RewardPeriodType.Weekly:
-                    _periodName = "Week";
-                    break;
-            }
+            _view = LoadView<RewardView>(placeForUI, VIEW_PATH);
+            _profilePlayer = profilePlayer;
+            CreateCurrencyController(placeForUI, profilePlayer.Currency);
+
+            Init();
         }
 
-        public void Init()
+        private void CreateCurrencyController(Transform placeForUI, CurrencyModel currency)
+        {
+            var currencyController = new CurrencyController(currency, placeForUI);
+            AddController(currencyController);
+        }
+
+        private void Init()
         {
             if (_isInitialized) return;
 
@@ -44,7 +48,7 @@ namespace NikolayTrofimov_MobileGame_Lesson6
             _isInitialized = true;
         }
 
-        public void Deinit()
+        private void Deinit()
         {
             if (!_isInitialized) return;
 
@@ -105,12 +109,14 @@ namespace NikolayTrofimov_MobileGame_Lesson6
         {
             _view.GetRewardButton.onClick.AddListener(ClaimReward);
             _view.ResetButton.onClick.AddListener(ResetRewardsState);
+            _view.CloseButton.onClick.AddListener(Close);
         }
 
         private void UnsubscribeButtons()
         {
             _view.GetRewardButton.onClick.RemoveListener(ClaimReward);
             _view.ResetButton.onClick.RemoveListener(ResetRewardsState);
+            _view.CloseButton.onClick.RemoveListener(Close);
         }
 
         private void ClaimReward()
@@ -122,10 +128,10 @@ namespace NikolayTrofimov_MobileGame_Lesson6
             switch (reward.RewardType)
             {
                 case RewardType.Wood:
-                    CurrencyVeiw.Inctance.AddWood(reward.Count);
+                    _profilePlayer.Currency.Wood.Value += reward.Count;
                     break;
                 case RewardType.Diamond:
-                    CurrencyVeiw.Inctance.AddDiamond(reward.Count);
+                    _profilePlayer.Currency.Diamond.Value += reward.Count;
                     break;
             }
 
@@ -195,7 +201,7 @@ namespace NikolayTrofimov_MobileGame_Lesson6
                 int countDay = i + 1;
                 bool isSelected = i == _view.CurrencySlotInActive;
 
-                _slots[i].SetData(reward, countDay, isSelected, _periodName);
+                _slots[i].SetData(reward, countDay, isSelected, PERIOD_NAME);
             }
         }
 
@@ -207,6 +213,17 @@ namespace NikolayTrofimov_MobileGame_Lesson6
             }
 
             _slots.Clear();
+        }
+
+        private void Close()
+        {
+            _profilePlayer.GameState.Value = GameState.MainMenu;
+        }
+
+        protected override void OnDispose()
+        {
+            base.OnDispose();
+            Deinit();
         }
     }
 }

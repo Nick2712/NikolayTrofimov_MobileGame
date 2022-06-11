@@ -37,6 +37,9 @@ namespace NikolayTrofimov_MobileGame
                 case GameState.Inventory:
                     _currentStateController = new ShedController(_placeForUI, _profilePlayer);
                     break;
+                case GameState.DailyReward:
+                    _currentStateController = new RewardController(_placeForUI, _profilePlayer);
+                    break;
             }
         }
 

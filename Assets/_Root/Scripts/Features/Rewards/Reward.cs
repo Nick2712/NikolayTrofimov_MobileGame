@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-namespace NikolayTrofimov_MobileGame_Lesson6
+namespace NikolayTrofimov_MobileGame
 {
     [Serializable]
     internal sealed class Reward

@@ -5,17 +5,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace NikolayTrofimov_MobileGame_Lesson6
+namespace NikolayTrofimov_MobileGame
 {
-    internal sealed class DailyRewardView : MonoBehaviour
+    internal sealed class RewardView : MonoBehaviour
     {
         private const string CURRENCY_SLOT_IN_ACTIVE_KEY = nameof(CURRENCY_SLOT_IN_ACTIVE_KEY);
         private const string TIME_GET_REWARD_KEY = nameof(TIME_GET_REWARD_KEY);
 
         [Header("Settings Time Get Reward")]
-        [SerializeField] private float _dailyTimeCooldown = 86400;
-        [SerializeField] private float _weeklyTimeCooldown = 86400 * 7;
-        [field: SerializeField] public RewardPeriodType RewardPeriodType { get; private set; }
+        [SerializeField] private float _timeCooldown = 86400;
         
         [field: Header("Settings Rewards")]
         [field: SerializeField] public List<Reward> Rewards { get; private set; }
@@ -26,19 +24,10 @@ namespace NikolayTrofimov_MobileGame_Lesson6
         [field: SerializeField] public ContainerSlotRewardView ContainerSlotRewardViewPrefab { get; private set; }
         [field: SerializeField] public Button GetRewardButton { get; private set; }
         [field: SerializeField] public Button ResetButton { get; private set; }
+        [field: SerializeField] public Button CloseButton { get; private set; }
 
-        public float TimeCooldown 
-        { 
-            get
-            {
-                return RewardPeriodType switch
-                {
-                    RewardPeriodType.Daily => _dailyTimeCooldown,
-                    RewardPeriodType.Weekly => _weeklyTimeCooldown,
-                    _ => _dailyTimeCooldown,
-                };
-            }
-        }
+        public float TimeCooldown => _timeCooldown;
+        
 
         public int CurrencySlotInActive
         {
