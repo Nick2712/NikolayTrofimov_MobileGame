@@ -29,6 +29,8 @@ namespace NikolayTrofimov_MobileGame
             AddController(abilitiesController);
 
             AddController(new StartFightController(placeForUI, profilePlayer));
+
+            AddController(new ReturnToMainMenuController(placeForUI, profilePlayer));
         }
 
         private IAbilityActivator CreateTransportController(ProfilePlayer profilePlayer)
