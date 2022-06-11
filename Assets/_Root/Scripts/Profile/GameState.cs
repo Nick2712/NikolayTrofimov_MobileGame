@@ -6,6 +6,8 @@ namespace NikolayTrofimov_MobileGame
         MainMenu,
         Game,
         Settings,
-        Inventory
+        Inventory,
+        DailyReward,
+        Fight
     }
 }

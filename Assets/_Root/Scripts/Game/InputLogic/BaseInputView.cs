@@ -17,7 +17,7 @@ namespace NikolayTrofimov_MobileGame
 
         protected abstract void Move(float deltaTime);
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             UpdateManager.UpdateAction -= Move;
         }
