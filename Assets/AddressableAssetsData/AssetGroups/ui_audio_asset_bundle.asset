@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ui_audio_asset_bundle
+  m_EditorClassIdentifier: 
+  m_GroupName: ui_audio_asset_bundle
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6e9fd9c217fa7e548a09422a3db62465
+  m_SerializeEntries:
+  - m_GUID: 240ca7ce646ef6e46ab7827f89f8ca6e
+    m_Address: Assets/_Root/Audio/music.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 73742501607ec71418e901f1d720753e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 68e141726498b024ca3bf802f4c4d35d, type: 2}
+    - {fileID: 11400000, guid: 88e8a1633b4ec0c4f865ceb4f6654541, type: 2}
