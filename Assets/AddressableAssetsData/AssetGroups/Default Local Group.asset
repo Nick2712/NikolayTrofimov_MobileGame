@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 8f53231c6c184804d99c998415aab4b3
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: ec42fa14bb2c10a43b4183b98d25f151
+    m_Address: Assets/_Lesson9/Prefabs/SpawnButton.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 73742501607ec71418e901f1d720753e, type: 2}
   m_SchemaSet:

@@ -1,10 +1,7 @@
 ManifestFileVersion: 0
-CRC: 2955373544
+CRC: 1147371450
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: ui_graphic_asset_bundle
-      Dependencies: {}
-    Info_1:
-      Name: ui_audio_asset_bundle
+      Name: lesson9_dz
       Dependencies: {}

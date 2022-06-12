@@ -1,17 +1,19 @@
 ManifestFileVersion: 0
-CRC: 2639181513
+CRC: 2467939868
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e494b5856df07584248ec94278dbd303
+    Hash: 0cd62e55cd8a87bf2b7c35c71af227fd
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+    Hash: c21d61fe394c58399df3c6fb5c7c99b3
 HashAppended: 0
 ClassTypes:
-- Class: 83
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/_Root/Audio/music.mp3
+- Assets/_Root/Sprites/SkySprite.png
 Dependencies: []

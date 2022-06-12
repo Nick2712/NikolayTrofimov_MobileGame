@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -17,6 +18,9 @@ namespace NikolayTrofimov_MobileGame_Lesson9
         [SerializeField] private RectTransform _spawnedButtonConteiner;
         [SerializeField] private Button _spawnAssetButton;
 
+        [Header("Lesson9 DZ1")]
+        [SerializeField] private Button _dzButton;
+
         private readonly List<AsyncOperationHandle<GameObject>> _addressablePrefabs = 
             new List<AsyncOperationHandle<GameObject>>();
 
@@ -25,6 +29,15 @@ namespace NikolayTrofimov_MobileGame_Lesson9
         {
             _loadAssetsButton.onClick.AddListener(LoadAssets);
             _spawnAssetButton.onClick.AddListener(SpawnPrefab);
+
+            _dzButton.onClick.AddListener(ChangeImage);
+        }
+
+        private void ChangeImage()
+        {
+            _dzButton.interactable = false;
+
+            StartCoroutine(DZ());
         }
 
         private void SpawnPrefab()
@@ -54,6 +67,8 @@ namespace NikolayTrofimov_MobileGame_Lesson9
         {
             _loadAssetsButton.onClick.RemoveAllListeners();
             _spawnAssetButton.onClick.RemoveAllListeners();
+
+            _dzButton.onClick.RemoveAllListeners();
 
             DespawnPrefabs();
         }
