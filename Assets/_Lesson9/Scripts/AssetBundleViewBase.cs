@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+
 
 namespace NikolayTrofimov_MobileGame_Lesson9
 {
@@ -18,6 +17,7 @@ namespace NikolayTrofimov_MobileGame_Lesson9
 
         private AssetBundle _spriteAssetBundle;
         private AssetBundle _audioAssetBundle;
+
 
         protected IEnumerator DownloadAndSetAssetBundles()
         {
