@@ -21,8 +21,16 @@ namespace NikolayTrofimov_MobileGame_Lesson9
         [Header("Lesson9 DZ1")]
         [SerializeField] private Button _dzButton;
 
+        [Header("Lesson9 DZ2")]
+        [SerializeField] private AssetReference _backgroundImagePrefab;
+        [SerializeField] private Image _backgroundImage;
+        [SerializeField] private Button _addBackgroundButton;
+        [SerializeField] private Button _removeBackgroundButton;
+
         private readonly List<AsyncOperationHandle<GameObject>> _addressablePrefabs = 
             new List<AsyncOperationHandle<GameObject>>();
+
+        private AsyncOperationHandle<Sprite> _addressableDackgroundSprite;
 
 
         private void Start()
@@ -31,6 +39,35 @@ namespace NikolayTrofimov_MobileGame_Lesson9
             _spawnAssetButton.onClick.AddListener(SpawnPrefab);
 
             _dzButton.onClick.AddListener(ChangeImage);
+
+            _addBackgroundButton.onClick.AddListener(AddBackground);
+            _removeBackgroundButton.onClick.AddListener(RemoveBackground);
+
+            _removeBackgroundButton.interactable = false;
+        }
+
+        private void AddBackground()
+        {
+            _addBackgroundButton.interactable = false;
+            _removeBackgroundButton.interactable = true;
+
+            _backgroundImage.gameObject.SetActive(true);
+
+            _addressableDackgroundSprite = Addressables.LoadAssetAsync<Sprite>(_backgroundImagePrefab);
+
+            _backgroundImage.sprite = _addressableDackgroundSprite.WaitForCompletion();
+        }
+
+
+        private void RemoveBackground()
+        {
+            _addBackgroundButton.interactable = true;
+            _removeBackgroundButton.interactable= false;
+
+            Addressables.Release(_addressableDackgroundSprite);
+            _backgroundImage.sprite= null;
+
+            _backgroundImage.gameObject.SetActive(false);
         }
 
         private void ChangeImage()
@@ -71,6 +108,8 @@ namespace NikolayTrofimov_MobileGame_Lesson9
             _dzButton.onClick.RemoveAllListeners();
 
             DespawnPrefabs();
+
+            Addressables.Release(_addressableDackgroundSprite);
         }
     }
 }

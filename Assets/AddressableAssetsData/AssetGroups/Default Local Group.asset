@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: Assets/_Lesson9/Prefabs/SpawnButton.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 24770088dedc9e84b97afaa1c612d506
+    m_Address: Assets/_Root/Sprites/SkyTileSprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 73742501607ec71418e901f1d720753e, type: 2}
   m_SchemaSet:
