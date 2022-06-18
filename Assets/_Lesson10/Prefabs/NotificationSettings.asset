@@ -12,5 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022fa7347f403ea4bb31bd42d49c93c3, type: 3}
   m_Name: NotificationSettings
   m_EditorClassIdentifier: 
-  <Channels>k__BackingField: []
-  <Notifications>k__BackingField: []
+  <Channels>k__BackingField:
+  - <Id>k__BackingField: n1
+    <Name>k__BackingField: "\u043A\u0430\u043D\u0430\u043B \u043D\u043E\u0442\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438
+      \u0438\u043C\u044F"
+    <Description>k__BackingField: "\u043A\u0430\u043D\u0430\u043B \u043D\u043E\u0442\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438
+      \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
+    _importance: 2
+  <Notifications>k__BackingField:
+  - <Id>k__BackingField: n1-1
+    <Title>k__BackingField: "\u043D\u0435\u043A\u043E\u0442\u043E\u0440\u0430\u044F
+      \u043D\u043E\u0442\u0438\u0444\u0438\u043A\u0430\u044B\u0446\u0438\u044F"
+    <Text>k__BackingField: "\u0442\u0435\u043A\u0441\u0442 \u043D\u0435\u043A\u0442\u043E\u0440\u043E\u0439
+      \u043D\u043E\u0442\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438"
+    <RepeatType>k__BackingField: 0
+    <FireTime>k__BackingField:
+      <Year>k__BackingField: 0
+      <Month>k__BackingField: 0
+      <Day>k__BackingField: 0
+      <Hour>k__BackingField: 0
+      <Minute>k__BackingField: 0
+    <RepeatInterval>k__BackingField:
+      <Seconds>k__BackingField: 0
