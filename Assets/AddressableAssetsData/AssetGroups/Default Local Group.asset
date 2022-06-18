@@ -15,19 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: 8f53231c6c184804d99c998415aab4b3
-  m_SerializeEntries:
-  - m_GUID: ec42fa14bb2c10a43b4183b98d25f151
-    m_Address: Assets/_Lesson9/Prefabs/SpawnButton.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 24770088dedc9e84b97afaa1c612d506
-    m_Address: Assets/_Root/Sprites/SkyTileSprite.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_GUID: 83b8a0880b345764682297322e176cda
+  m_SerializeEntries: []
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: 73742501607ec71418e901f1d720753e, type: 2}
+  m_Settings: {fileID: 11400000, guid: 27d3c79dff1beef4c8eb5aca2423abf2, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: e1e20282412fcbe46872d0a31df5fb06, type: 2}
-    - {fileID: 11400000, guid: 4f959ba6d971b824f990c77959bfdcd8, type: 2}
+    - {fileID: 11400000, guid: 80600440f53be5046b0691f8c00d85ff, type: 2}
+    - {fileID: 11400000, guid: 2548699e5bd76f94a80335a076352f62, type: 2}

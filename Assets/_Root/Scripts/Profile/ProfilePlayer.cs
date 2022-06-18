@@ -3,6 +3,7 @@ namespace NikolayTrofimov_MobileGame
     internal sealed class ProfilePlayer : IProfilePlayer
     {
         public SubscriptionProperty<GameState> GameState { get; }
+        public SubscriptionProperty<Language> Language { get; }
         public TransportModel Transport { get; }
         public InventoryModel InventoryModel { get; }
 
@@ -17,6 +18,8 @@ namespace NikolayTrofimov_MobileGame
             InventoryModel = new InventoryModel();
             Currency = new CurrencyModel();
             Pause = new PauseModel();
+            Language = new SubscriptionProperty<Language>();
+            Language.Value = NikolayTrofimov_MobileGame.Language.English;
         }
     }
 }

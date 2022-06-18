@@ -14,7 +14,7 @@ namespace NikolayTrofimov_MobileGame
             _profilePlayer = profilePlayer;
             var settings = Object.Instantiate(ResourceLoader.LoadPrefab(PATH), placeForUI);
             AddGameObject(settings);
-            settings.GetComponent<SettingsView>().Init(Back);
+            settings.GetComponent<SettingsView>().Init(Back, profilePlayer.Language);
         }
 
         private void Back()
