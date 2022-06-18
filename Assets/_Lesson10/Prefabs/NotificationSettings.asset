@@ -22,7 +22,7 @@ MonoBehaviour:
   <Notifications>k__BackingField:
   - <Id>k__BackingField: n1-1
     <Title>k__BackingField: "\u043D\u0435\u043A\u043E\u0442\u043E\u0440\u0430\u044F
-      \u043D\u043E\u0442\u0438\u0444\u0438\u043A\u0430\u044B\u0446\u0438\u044F"
+      \u043D\u043E\u0442\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u044F"
     <Text>k__BackingField: "\u0442\u0435\u043A\u0441\u0442 \u043D\u0435\u043A\u0442\u043E\u0440\u043E\u0439
       \u043D\u043E\u0442\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438"
     <RepeatType>k__BackingField: 0
@@ -34,3 +34,17 @@ MonoBehaviour:
       <Minute>k__BackingField: 0
     <RepeatInterval>k__BackingField:
       <Seconds>k__BackingField: 0
+  - <Id>k__BackingField: n1-2
+    <Title>k__BackingField: " \u043D\u043E\u0442\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u044F
+      \u043D\u043E\u043C\u0435\u0440 2"
+    <Text>k__BackingField: "\u0442\u0435\u043A\u0441\u0442 \u043D\u043E\u0442\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438
+      \u043D\u043E\u043C\u0435\u0440 2"
+    <RepeatType>k__BackingField: 1
+    <FireTime>k__BackingField:
+      <Year>k__BackingField: 0
+      <Month>k__BackingField: 0
+      <Day>k__BackingField: 0
+      <Hour>k__BackingField: 0
+      <Minute>k__BackingField: 0
+    <RepeatInterval>k__BackingField:
+      <Seconds>k__BackingField: 10

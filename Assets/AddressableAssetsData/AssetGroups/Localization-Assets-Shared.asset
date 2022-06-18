@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 93606f50957a8364f991cf5241bed8b7
   m_SerializeEntries:
-  - m_GUID: c40e63a8c677eb6468c39f7d2a4452a6
-    m_Address: Assets/New Table Shared Data.asset
+  - m_GUID: 80092b93b4a9e45478a0e076056fbac0
+    m_Address: Assets/_Root/Localization/GameLocalization Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
   m_ReadOnly: 1

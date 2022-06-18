@@ -17,6 +17,8 @@ namespace NikolayTrofimov_MobileGame
             mainMenu.GetComponent<MainMenuView>().Init(StartGame, Settings, ShowReward, 
                 BuyProduct, Shed, DailyReward, Exit);
             AddGameObject(mainMenu);
+
+            mainMenu.GetComponent<MainMenuLocalization>().Init(profilePlayer.Language);
         }
 
         private void StartGame()

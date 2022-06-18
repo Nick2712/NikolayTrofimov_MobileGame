@@ -16,7 +16,7 @@ namespace NikolayTrofimov_MobileGame
         [SerializeField] private Button _showRewardedButton;
         [SerializeField] private Button _buyProductButton;
 
-        
+
         public void Init(UnityAction startAction, UnityAction settingsAction, 
             UnityAction showRewardedAction, UnityAction buyProductAction, UnityAction shedAction, 
             UnityAction dailyRewardAction, UnityAction exitAction)
